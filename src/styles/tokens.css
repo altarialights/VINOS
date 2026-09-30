@@ -1,0 +1,5 @@
+@font-face{font-family:LaderaSans;src:url('/assets/ladera-sans.woff') format('woff');font-weight:400;font-display:swap}
+@font-face{font-family:LaderaDisplay;src:url('/assets/ladera-display.woff') format('woff');font-weight:700;font-display:swap}
+@font-face{font-family:LaderaSerif;src:url('/assets/ladera-serif.woff') format('woff');font-weight:400;font-display:swap}
+:root{--forest:#111C16;--ink:#080F0B;--ivory:#F4F0DF;--amber:#BDA66D;--muted:#D5D6C9;--rule:rgba(244,240,223,.32);--sans:LaderaSans,Arial,sans-serif;--display:LaderaDisplay,Arial,sans-serif;--serif:LaderaSerif,Georgia,serif;--page-pad:clamp(20px,5vw,80px);--button-height:56px;--radius:18px;--pill:999px;--surface-radius:28px;--header-height:76px;--fast:180ms;--standard:360ms}
+

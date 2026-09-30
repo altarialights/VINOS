@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T14:35:57.061634+00:00",
+  "title": "Design System: Ladera",
+  "extensions": {
+    "colorMeta": {
+      "forest": {
+        "role": "primary",
+        "displayName": "Forest",
+        "tonalRamp": [
+          "oklch(15% 0.0198 160.28)",
+          "oklch(26.43% 0.0198 160.28)",
+          "oklch(37.86% 0.0198 160.28)",
+          "oklch(49.29% 0.0198 160.28)",
+          "oklch(60.71% 0.0198 160.28)",
+          "oklch(72.14% 0.0198 160.28)",
+          "oklch(83.57% 0.0198 160.28)",
+          "oklch(95% 0.0198 160.28)"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0.0140 159.73)",
+          "oklch(26.43% 0.0140 159.73)",
+          "oklch(37.86% 0.0140 159.73)",
+          "oklch(49.29% 0.0140 159.73)",
+          "oklch(60.71% 0.0140 159.73)",
+          "oklch(72.14% 0.0140 159.73)",
+          "oklch(83.57% 0.0140 159.73)",
+          "oklch(95% 0.0140 159.73)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "tonalRamp": [
+          "oklch(15% 0.0229 95.96)",
+          "oklch(26.43% 0.0229 95.96)",
+          "oklch(37.86% 0.0229 95.96)",
+          "oklch(49.29% 0.0229 95.96)",
+          "oklch(60.71% 0.0229 95.96)",
+          "oklch(72.14% 0.0229 95.96)",
+          "oklch(83.57% 0.0229 95.96)",
+          "oklch(95% 0.0229 95.96)"
+        ]
+      },
+      "amber": {
+        "role": "primary",
+        "displayName": "Amber",
+        "tonalRamp": [
+          "oklch(15% 0.0798 88.39)",
+          "oklch(26.43% 0.0798 88.39)",
+          "oklch(37.86% 0.0798 88.39)",
+          "oklch(49.29% 0.0798 88.39)",
+          "oklch(60.71% 0.0798 88.39)",
+          "oklch(72.14% 0.0798 88.39)",
+          "oklch(83.57% 0.0798 88.39)",
+          "oklch(95% 0.0798 88.39)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15% 0.0176 110.33)",
+          "oklch(26.43% 0.0176 110.33)",
+          "oklch(37.86% 0.0176 110.33)",
+          "oklch(49.29% 0.0176 110.33)",
+          "oklch(60.71% 0.0176 110.33)",
+          "oklch(72.14% 0.0176 110.33)",
+          "oklch(83.57% 0.0176 110.33)",
+          "oklch(95% 0.0176 110.33)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "tonalRamp": [
+          "oklch(15% 0.0229 95.96)",
+          "oklch(26.43% 0.0229 95.96)",
+          "oklch(37.86% 0.0229 95.96)",
+          "oklch(49.29% 0.0229 95.96)",
+          "oklch(60.71% 0.0229 95.96)",
+          "oklch(72.14% 0.0229 95.96)",
+          "oklch(83.57% 0.0229 95.96)",
+          "oklch(95% 0.0229 95.96)"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus",
+        "tonalRamp": [
+          "oklch(15% 0.0899 87.85)",
+          "oklch(26.43% 0.0899 87.85)",
+          "oklch(37.86% 0.0899 87.85)",
+          "oklch(49.29% 0.0899 87.85)",
+          "oklch(60.71% 0.0899 87.85)",
+          "oklch(72.14% 0.0899 87.85)",
+          "oklch(83.57% 0.0899 87.85)",
+          "oklch(95% 0.0899 87.85)"
+        ]
+      },
+      "primary-hover": {
+        "role": "neutral",
+        "displayName": "Primary Hover",
+        "tonalRamp": [
+          "oklch(15% 0.0176 92.68)",
+          "oklch(26.43% 0.0176 92.68)",
+          "oklch(37.86% 0.0176 92.68)",
+          "oklch(49.29% 0.0176 92.68)",
+          "oklch(60.71% 0.0176 92.68)",
+          "oklch(72.14% 0.0176 92.68)",
+          "oklch(83.57% 0.0176 92.68)",
+          "oklch(95% 0.0176 92.68)"
+        ]
+      },
+      "secondary-fill": {
+        "role": "neutral",
+        "displayName": "Secondary Fill",
+        "tonalRamp": [
+          "oklch(15% 0.0140 159.73)",
+          "oklch(26.43% 0.0140 159.73)",
+          "oklch(37.86% 0.0140 159.73)",
+          "oklch(49.29% 0.0140 159.73)",
+          "oklch(60.71% 0.0140 159.73)",
+          "oklch(72.14% 0.0140 159.73)",
+          "oklch(83.57% 0.0140 159.73)",
+          "oklch(95% 0.0140 159.73)"
+        ]
+      },
+      "field-fill": {
+        "role": "neutral",
+        "displayName": "Field Fill",
+        "tonalRamp": [
+          "oklch(15% 0.0163 157.05)",
+          "oklch(26.43% 0.0163 157.05)",
+          "oklch(37.86% 0.0163 157.05)",
+          "oklch(49.29% 0.0163 157.05)",
+          "oklch(60.71% 0.0163 157.05)",
+          "oklch(72.14% 0.0163 157.05)",
+          "oklch(83.57% 0.0163 157.05)",
+          "oklch(95% 0.0163 157.05)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Desktop Display",
+        "purpose": "Enhanced hero; supplied DejaVu Sans Bold."
+      },
+      "headline": {
+        "displayName": "Desktop Headline",
+        "purpose": "Enhanced narrative chapter titles."
+      },
+      "body": {
+        "displayName": "Reading Serif",
+        "purpose": "Local DejaVu Serif reading copy; desktop scales independently."
+      },
+      "control": {
+        "displayName": "Interface Sans",
+        "purpose": "Primary actions and form controls."
+      },
+      "eyebrow": {
+        "displayName": "Pinned Eyebrow",
+        "purpose": "Small uppercase editorial labels; preserve supplied tracking."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "scrub",
+        "value": "0.7s",
+        "purpose": "Catch-up of desktop timeline to native scroll."
+      },
+      {
+        "name": "composition-transitions",
+        "value": "53?57%",
+        "purpose": "Explicit unequal intervals in src/config/motion-v2.ts."
+      },
+      {
+        "name": "camera",
+        "value": "1.02?1.055; -1.6% x / -1% y",
+        "purpose": "Continuous ease:none shallow camera."
+      },
+      {
+        "name": "stacked-parallax",
+        "value": "8px background; 16?20px subject",
+        "purpose": "Total range, active sections only; stationary text."
+      },
+      {
+        "name": "navigation",
+        "value": "850ms",
+        "purpose": "Interruptible label navigation, instant under reduced motion."
+      },
+      {
+        "name": "video-reveal",
+        "value": "320ms",
+        "purpose": "Only after a decoded frame; persistent manual pause."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "commerce-columns",
+        "value": "768px"
+      },
+      {
+        "name": "enhanced-min-width",
+        "value": "1100px"
+      },
+      {
+        "name": "enhanced-min-height",
+        "value": "700px"
+      },
+      {
+        "name": "compact-header-max",
+        "value": "1099px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A standard narrative or commerce action. Height is a minimum.",
+      "html": "<button class=\"ds-primary\">Descubrir el vino<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 12h15m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:52px;padding:12px 22px;border:1px solid var(--ivory,#F4F0DF);text-decoration:none;cursor:pointer;transition:background 180ms,color 180ms;font:16px/1.4 var(--sans,LaderaSans,Arial,sans-serif);border-radius:var(--radius,2px);background:var(--ivory,#F4F0DF);color:var(--ink,#080F0B);}.ds-primary:hover{background:#fffbee;}.ds-primary:focus-visible{outline:3px solid #ffe3a0;outline-offset:5px;}.ds-primary:disabled{opacity:.65;cursor:wait;}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A standard narrative or commerce action. Height is a minimum.",
+      "html": "<button class=\"ds-secondary\">Descubrir el vino<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 12h15m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;gap:16px;min-height:52px;padding:12px 22px;border:1px solid var(--ivory,#F4F0DF);text-decoration:none;cursor:pointer;transition:background 180ms,color 180ms;font:16px/1.4 var(--sans,LaderaSans,Arial,sans-serif);border-radius:var(--radius,2px);background:#080f0b99;color:var(--ivory,#F4F0DF);}.ds-secondary:hover{background:var(--forest,#111C16);}.ds-secondary:focus-visible{outline:3px solid #ffe3a0;outline-offset:5px;}.ds-secondary:disabled{opacity:.65;cursor:wait;}"
+    },
+    {
+      "name": "Quantity Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A labelled native numeric field with a visible keyboard focus.",
+      "html": "<label class=\"ds-label\" for=\"ds-quantity\">Cantidad</label><input class=\"ds-field\" id=\"ds-quantity\" type=\"number\" value=\"1\" min=\"1\" max=\"12\">",
+      "css": ".ds-label{display:block;margin:20px 0 8px;color:var(--ivory,#F4F0DF);font:16px/1.6 var(--sans,LaderaSans,Arial,sans-serif)}.ds-field{font:16px/1.4 var(--sans,LaderaSans,Arial,sans-serif);border-radius:var(--radius,2px);background:#08100bcc;color:var(--ivory,#F4F0DF);border:1px solid var(--rule,rgba(244,240,223,.32));min-height:52px;padding:10px 14px;width:88px;color-scheme:dark;caret-color:var(--amber,#BDA66D)}.ds-field:focus-visible{outline:3px solid #ffe3a0;outline-offset:5px;}"
+    },
+    {
+      "name": "Format Options",
+      "kind": "custom",
+      "refersTo": "format-option",
+      "description": "Native radio choices with selected and keyboard-focus states.",
+      "html": "<fieldset class=\"ds-formats\"><legend>Elige tu formato</legend><div class=\"ds-options\"><label><input type=\"radio\" name=\"ds-format\" checked><span>1 botella</span></label><label><input type=\"radio\" name=\"ds-format\"><span>6 botellas</span></label></div></fieldset>",
+      "css": ".ds-formats{border:0;padding:0;margin:0;color:var(--ivory,#F4F0DF);font:16px/1.6 var(--sans,LaderaSans,Arial,sans-serif)}.ds-formats legend{margin-bottom:8px}.ds-options{display:flex;gap:12px}.ds-options label{position:relative;flex:1}.ds-options input{position:absolute;opacity:0;width:1px;height:1px}.ds-options span{display:flex;align-items:center;justify-content:center;min-height:52px;padding:10px 16px;border:1px solid var(--ivory,#F4F0DF);border-radius:var(--radius,2px);cursor:pointer}.ds-options input:checked+span{color:var(--ink,#080F0B);background:var(--ivory,#F4F0DF)}.ds-options input:focus-visible+span{outline:3px solid #ffe3a0;outline-offset:5px;}"
+    },
+    {
+      "name": "Main Navigation",
+      "kind": "nav",
+      "description": "Understated links with direct chapter access.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Principal\"><a href=\"#origen\">Origen</a><a href=\"#uva\">La uva</a><a href=\"#nariz\">Matices</a><a href=\"#cata\">Vis?tanos</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:26px;color:var(--ivory,#F4F0DF);font:16px/1.6 var(--sans,LaderaSans,Arial,sans-serif)}.ds-nav a{display:flex;align-items:center;min-height:48px;color:inherit;text-decoration:none;text-underline-offset:5px}.ds-nav a:hover{text-decoration:underline}.ds-nav a:focus-visible{outline:3px solid #ffe3a0;outline-offset:5px;}"
+    },
+    {
+      "name": "Tasting Descriptors",
+      "kind": "custom",
+      "description": "Noninteractive serif descriptors with fine underlines.",
+      "html": "<ul class=\"ds-notes\"><li>Fruta roja</li><li>Flores</li></ul>",
+      "css": ".ds-notes{display:flex;flex-wrap:wrap;gap:8px 24px;list-style:none;padding:0;margin:0 0 28px;color:var(--ivory,#F4F0DF)}.ds-notes li{font:18px/1.5 var(--serif,LaderaSerif,Georgia,serif);border-bottom:1px solid var(--rule,rgba(244,240,223,.32));padding-bottom:8px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Shared Vineyard",
+    "overview": "A forest-and-ivory photographic collage inherits the supplied Ladera production kit. Warm light from the upper right, dark granite, a single vineyard landscape and fixed product cutouts create an apparent shallow camera move. This is an established visual identity to preserve, not a new art direction.\n\nBold, tightly tracked local sans headlines sit beside quieter serif reading copy. Real HTML remains legible above the imagery; tonal veils provide contrast while controls stay restrained and direct. The supplied wordmark, local DejaVu fonts and master photographs are binding visual assets.",
+    "keyCharacteristics": [
+      "One shared photographic world with warm upper-right light.",
+      "Bold compact headlines, serif reading copy and restrained sans controls.",
+      "Forest and ink surfaces, ivory type and sparing amber accents.",
+      "Continuous shallow camera with final ambient media; light stacked parallax and complete reduced-motion fallback."
+    ],
+    "rules": [
+      {
+        "name": "The Shared Landscape Rule",
+        "body": "Preserve the same landscape through origin, grape and tasting notes; contrast comes from local tonal veils rather than a replacement image.",
+        "section": "colors"
+      },
+      {
+        "name": "The Pinned Type Rule",
+        "body": "Keep the supplied tight display tracking and small, widely spaced uppercase eyebrows. Do not apply generic typography corrections to these intentional identity choices. The exact hero headline is ?UN LUJO EN NAVALUENGA?.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do reuse the supplied wordmark, local fonts and unchanged master assets.",
+      "Do preserve the exact hero title, pinned eyebrow styling and tight display tracking.",
+      "Do use the reading veil behind right-aligned narrative copy.",
+      "Do keep purchase and tasting in normal document flow with visible labels and focus.",
+      "Do grow stacked sections to fit complete text, imagery and actions."
+    ],
+    "donts": [
+      "Don't regenerate, mirror, relabel or distort the photographic assets.",
+      "Don't replace the shared landscape between origin, grape and tasting-note chapters.",
+      "Don't rotate the filled glass, morph photographic subjects or imply continuous 3D travel into the tasting image.",
+      "Don't add scroll-jacking, a special cursor, mandatory video, default audio or continuous decorative animation.",
+      "Don't substitute system fonts or turn page screenshots into backgrounds. User-authorized V2.2 supersedes square controls: 999px action capsules, 18px fields, 28px dialogs. DESIGN.md and src/styles are current; component samples above retain historical V1 geometry."
+    ]
+  }
+}

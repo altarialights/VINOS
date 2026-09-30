@@ -1,0 +1,18 @@
+---
+import { content } from '../lib/content';
+import Asset from './Asset.astro';
+import Arrow from './Arrow.astro';
+---
+<section id="comprar" class="commerce" aria-labelledby="buy-title" tabindex="-1"><div class="commerce-grid">
+  <div class="commerce-visual"><Asset name="bottle-master" alt="Ladera Garnacha 2023, producto de demostración" /></div>
+  <div><p class="eyebrow">EL VINO</p><h2 id="buy-title">{content.commerce.title}</h2><p class="product-name">{content.product.name} · {content.product.grape} {content.product.vintage}</p>
+    <form id="purchase-form" novalidate>
+      <fieldset><legend>Elige tu formato</legend><div class="format-options">{content.product.formats.map((format, i) => <label><input type="radio" name="format" value={format.id} checked={i === 0} /><span>{format.label}</span></label>)}</div></fieldset>
+      <div class="quantity"><label for="quantity">Cantidad</label><input id="quantity" name="quantity" type="number" min="1" max="12" step="1" value="1" required inputmode="numeric" aria-describedby="quantity-error selection-summary" /></div>
+      <p id="quantity-error" class="form-error" hidden></p><p class="selection-summary" id="selection-summary" aria-live="polite">1 × 1 botella · 1 botella en total</p>
+      <div class="shop-actions"><button class="button" type="submit">{content.commerce.primary}<Arrow /></button><button class="button secondary" type="button" data-retailers>{content.commerce.secondary}<Arrow /></button></div>
+      <p class="fine mt-4">{content.commerce.unavailableMessage}</p><div id="retailer-status" class="status" role="status"></div>
+    </form>
+    <div class="cross-sell"><p>¿Prefieres descubrirlo aquí?</p><a href="#cata">Reserva una cata<Arrow /></a></div>
+  </div>
+</div></section>

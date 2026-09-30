@@ -1,0 +1,26 @@
+---
+import Header from '../components/Header.astro';
+import SceneStage from '../components/SceneStage.astro';
+import PurchasePanel from '../components/PurchasePanel.astro';
+import TastingForm from '../components/TastingForm.astro';
+import DemoDialog from '../components/DemoDialog.astro';
+import { content, ui } from '../lib/content';
+import { motion } from '../config/motion-v2';
+import '../styles/global.css';
+---
+<!doctype html><html lang="es"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" /><meta name="color-scheme" content="dark" /><meta name="theme-color" content="#111c16" /><meta name="robots" content="noindex,nofollow" /><meta name="description" content="Ladera. El paisaje se descubre. El vino se disfruta. Una experiencia de demostración." /><title>Ladera · Un lujo en Navaluenga</title><link rel="icon" href="/assets/ladera-wordmark.svg" type="image/svg+xml" /><link rel="preload" href="/assets/ladera-display.woff" as="font" type="font/woff" crossorigin /><link rel="preload" href="/assets/ladera-sans.woff" as="font" type="font/woff" crossorigin /></head><body>
+  <script is:inline define:vars={{ desktopMotionQuery: motion.desktopQuery }}>
+    if (matchMedia(desktopMotionQuery).matches) document.documentElement.classList.add('motion-desktop');
+    window.laderaMotionFallback = setTimeout(() => {
+      if (!document.documentElement.classList.contains('enhanced')) {
+        window.laderaMotionFallbackExceeded = true;
+        document.documentElement.classList.remove('motion-desktop');
+        document.querySelectorAll('.chapter').forEach(chapter => { chapter.inert = false; chapter.removeAttribute('aria-hidden'); });
+      }
+    }, 6500);
+  </script>
+  <Header /><main><SceneStage /><PurchasePanel /><TastingForm /></main>
+  <footer class="foot"><div><span>{ui.footer}</span><details><summary>Sobre esta demostración</summary><p>{content.statusNotes[0]}</p><p>{content.statusNotes[1]}</p></details></div><nav aria-label="Pie de página"><a href="#inicio">Volver al inicio</a><a href="#comprar">Comprar</a><a href="#cata">Cata</a></nav></footer>
+  <DemoDialog /><noscript><p class="noscript-notice">El recorrido y sus enlaces están disponibles. Para usar los controles demo de compra y cata, activa JavaScript. No hay tienda ni reservas conectadas.</p><style>.desktop-nav{display:flex;position:absolute;top:var(--header-height);left:0;right:0;justify-content:center;gap:14px;background:#111c16}.desktop-nav a{font-size:13px}.chapter#inicio{padding-top:150px}#purchase-form button,#tasting-form button{display:none}</style></noscript>
+  <script>import { initMotion } from '../scripts/motion'; import { initControls } from '../scripts/controls'; import { initAmbient } from '../scripts/ambient'; initControls(); initAmbient(); void initMotion();</script>
+</body></html>

@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "locale": "es-ES",
+  "timezone": "Europe/Madrid",
+  "demo": true,
+  "brand": {
+    "name": "Ladera",
+    "status": "Marca ficticia de demostración",
+    "headline": "UN LUJO EN NAVALUENGA",
+    "logo": "assets/ladera-wordmark.svg"
+  },
+  "product": {
+    "id": "ladera-garnacha-2023",
+    "name": "Ladera",
+    "grape": "Garnacha",
+    "vintage": 2023,
+    "verified": false,
+    "price": null,
+    "currency": "EUR",
+    "stock": null,
+    "checkoutUrl": null,
+    "retailers": [],
+    "formats": [
+      {
+        "id": "single",
+        "label": "1 botella",
+        "units": 1
+      },
+      {
+        "id": "case3",
+        "label": "Caja de 3",
+        "units": 3
+      }
+    ]
+  },
+  "chapters": [
+    {
+      "id": "inicio",
+      "eyebrow": "NAVALUENGA · UNA EXPERIENCIA",
+      "title": "UN LUJO EN NAVALUENGA",
+      "body": "El paisaje se descubre. El vino se disfruta.",
+      "primary": {
+        "label": "Descubrir el vino",
+        "href": "#origen"
+      },
+      "secondary": {
+        "label": "Reservar una cata",
+        "href": "#cata"
+      }
+    },
+    {
+      "id": "origen",
+      "eyebrow": "EL ORIGEN",
+      "title": "ANTES DEL VINO, EL PAISAJE.",
+      "body": "Navaluenga. Un lugar para detenerse, mirar y disfrutar.",
+      "primary": {
+        "label": "Conocer la uva",
+        "href": "#uva"
+      }
+    },
+    {
+      "id": "uva",
+      "eyebrow": "LA UVA",
+      "title": "TODO EMPIEZA EN UNA UVA.",
+      "subtitle": "Garnacha",
+      "body": "Acércate a la variedad que da forma a esta botella.",
+      "primary": {
+        "label": "Explorar sus matices",
+        "href": "#nariz"
+      }
+    },
+    {
+      "id": "nariz",
+      "eyebrow": "LOS MATICES · EN NARIZ",
+      "title": "PRIMERO, ACÉRCATE.",
+      "body": "Haz una pausa. Descubre lo que aparece en la copa.",
+      "notes": [
+        "Fruta roja",
+        "Monte bajo",
+        "Un recuerdo floral"
+      ],
+      "primary": {
+        "label": "Descubrir en boca",
+        "href": "#boca"
+      }
+    },
+    {
+      "id": "boca",
+      "eyebrow": "LOS MATICES · EN BOCA",
+      "title": "DESPUÉS, DÉJALO HABLAR.",
+      "body": "La experiencia continúa en cada sorbo.",
+      "notes": [
+        "Fresco",
+        "Sedoso",
+        "Persistente"
+      ],
+      "primary": {
+        "label": "Quiero probarlo",
+        "href": "#comprar"
+      }
+    }
+  ],
+  "commerce": {
+    "title": "UN POCO DE AQUÍ. PARA LLEVAR.",
+    "primary": "Ver precio y comprar",
+    "secondary": "Dónde encontrarlo",
+    "unavailableMessage": "Esta es una demostración. Los precios y puntos de venta se incorporarán al conectar la tienda."
+  },
+  "tasting": {
+    "title": "NAVALUENGA, EN PRIMERA PERSONA.",
+    "body": "El vino, su historia y el placer de compartirlo.",
+    "cta": "Consultar disponibilidad",
+    "availableSlots": [],
+    "venue": null,
+    "durationMinutes": null,
+    "price": null,
+    "bookingEndpoint": null,
+    "contact": null,
+    "demoMessage": "Consulta de demostración. No se ha realizado ni enviado una reserva."
+  },
+  "statusNotes": [
+    "Marca, añada y perfil de cata ilustrativos; requieren aprobación de la bodega real.",
+    "Paisajes y personas generados: no son fotografías documentales de Navaluenga.",
+    "No añadir premios, altitudes, parcelas, certificaciones, teléfonos ni direcciones sin datos verificados."
+  ]
+}

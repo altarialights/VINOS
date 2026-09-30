@@ -1,0 +1,116 @@
+import cfg from '../../ladera-handoff/spec/motion.json';
+import type { gsap as GsapType } from 'gsap';
+type GSAP = typeof GsapType;
+const keys = ['bottle', 'grapes', 'glass', 'leaves'] as const;
+export async function initMotion() {
+  const query = `(min-width:${cfg.breakpoints.tabletMax + 1}px) and (min-height:700px) and (prefers-reduced-motion:no-preference)`;
+  const media = matchMedia(query);
+  let gsap: GSAP | undefined;
+  let dispose: (() => void) | undefined;
+  let generation = 0;
+  let currentChapter = 'inicio';
+  let anchorTo: ((id: string) => boolean) | undefined;
+  const controller = new AbortController();
+  const track = document.querySelector<HTMLElement>('.track')!;
+  const stage = document.querySelector<HTMLElement>('.stage')!;
+  const chapters = [...document.querySelectorAll<HTMLElement>('.chapter')];
+  const dots = [...document.querySelectorAll<HTMLAnchorElement>('.chapter-dots a')];
+  const template = document.querySelector<HTMLTemplateElement>('#scene-template')!;
+  async function setMode() {
+    const run = ++generation;
+    const wasEnhanced = Boolean(dispose);
+    dispose?.(); dispose = undefined; anchorTo = undefined;
+    if (!media.matches) {
+      if (wasEnhanced && window.scrollY < track.offsetTop + track.offsetHeight) document.getElementById(currentChapter)?.scrollIntoView();
+      return;
+    }
+    const [g, s] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
+    if (run !== generation) return;
+    gsap = g.gsap;
+    gsap.registerPlugin(s.ScrollTrigger);
+    stage.prepend(template.content.cloneNode(true));
+    const scene = stage.querySelector<HTMLElement>('.shared-scene')!;
+    const layers = keys.map(key => scene.querySelector<HTMLElement>(`[data-layer="${key}"]`)!);
+    // Only the visible masters are requested at startup; prepare the glass as the origin approaches.
+    const glassImage = scene.querySelector<HTMLImageElement>('[data-layer="glass"] img')!;
+    const glassSrc = glassImage.dataset.src!;
+    document.documentElement.classList.add('enhanced');
+    const bg = scene.querySelector('.backdrop');
+    let glassPrepared = false;
+    let active = -1;
+    const smoothstep = (t: number) => t * t * (3 - 2 * t);
+    const context = gsap.context(() => {
+      const timeline = gsap!.timeline({ paused: true });
+      const layerState = (state: (typeof cfg.desktop)[number], key: typeof keys[number]) => ({
+        x: () => stage.clientWidth * state[key].xPct / 100,
+        y: () => stage.clientHeight * state[key].yPct / 100,
+        xPercent: -50, yPercent: -50,
+        scale: state[key].heightPct / 100,
+        rotation: state[key].rotationDeg, opacity: state[key].opacity,
+      });
+      keys.forEach((key, i) => gsap!.set(layers[i]!, layerState(cfg.desktop[0]!, key)));
+      gsap!.set(bg, { scale: cfg.desktop[0]!.background.scale });
+      cfg.desktop.slice(1).forEach((state, i) => {
+        const at = i + 1 - cfg.transitionFraction;
+        keys.forEach((key, j) => timeline.to(layers[j]!, { ...layerState(state, key), duration: cfg.transitionFraction, ease: smoothstep }, at));
+        timeline.to(bg, { scale: state.background.scale, xPercent: state.background.xPct, yPercent: state.background.yPct, duration: cfg.transitionFraction, ease: smoothstep }, at);
+        timeline.to(chapters[i]!, { opacity: 0, duration: cfg.transitionFraction * .42 }, at);
+        timeline.to(chapters[i + 1]!, { opacity: 1, duration: cfg.transitionFraction * .42 }, at + cfg.transitionFraction * .58);
+        timeline.to('.reading-veil', { opacity: state.copy === 'right' ? 1 : 0, duration: cfg.transitionFraction }, at);
+      });
+      timeline.to({}, { duration: 1 }, cfg.desktop.length - 1);
+      const trigger = s.ScrollTrigger.create({
+        trigger: track, start: 'top top', end: 'bottom bottom', animation: timeline, scrub: true,
+        invalidateOnRefresh: true,
+        onUpdate(self) {
+          const position = self.progress * cfg.desktop.length;
+          if (position > .45 && !glassPrepared) { glassPrepared = true; glassImage.src = glassSrc; glassImage.loading = 'eager'; }
+          const chapterIndex = Math.min(cfg.desktop.length - 1, Math.floor(position + cfg.transitionFraction / 2));
+          if (active !== chapterIndex) {
+            active = chapterIndex;
+            currentChapter = chapters[active]!.id;
+            chapters.forEach((chapter, i) => { chapter.inert = i !== active; chapter.setAttribute('aria-hidden', String(i !== active)); });
+            dots.forEach((dot, i) => i === active ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current'));
+          }
+        },
+      });
+      chapters.forEach((chapter, i) => { chapter.inert = i !== 0; chapter.setAttribute('aria-hidden', String(i !== 0)); });
+      dots[0]!.setAttribute('aria-current', 'true');
+      anchorTo = id => {
+        const i = chapters.findIndex(chapter => chapter.id === id);
+        if (i < 0) return false;
+        const top = trigger.start + (trigger.end - trigger.start) * (i + .04) / cfg.desktop.length;
+        window.scrollTo({ top, behavior: 'instant' });
+        s.ScrollTrigger.update();
+        chapters[i]!.focus({ preventScroll: true });
+        return true;
+      };
+      let resizeTimer: ReturnType<typeof setTimeout> | undefined;
+      const refresh = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => s.ScrollTrigger.refresh(), 160); };
+      const observer = new ResizeObserver(refresh);
+      observer.observe(stage);
+      document.fonts.ready.then(() => { if (run === generation) s.ScrollTrigger.refresh(); });
+      const visible = () => { if (!document.hidden) s.ScrollTrigger.refresh(); };
+      document.addEventListener('visibilitychange', visible);
+      dispose = () => {
+        clearTimeout(resizeTimer); observer.disconnect(); document.removeEventListener('visibilitychange', visible);
+        context.revert(); scene.remove(); document.documentElement.classList.remove('enhanced');
+        chapters.forEach(chapter => { chapter.inert = false; chapter.removeAttribute('aria-hidden'); });
+        dots.forEach(dot => dot.removeAttribute('aria-current'));
+      };
+    }, stage);
+    s.ScrollTrigger.refresh();
+    if (location.hash) navigateToHash();
+  }
+  document.addEventListener('click', event => {
+    const link = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+    if (!link) return;
+    const id = link.hash.slice(1);
+    if (anchorTo?.(id)) { event.preventDefault(); history.pushState(null, '', `#${id}`); }
+  }, { signal: controller.signal });
+  const navigateToHash = () => anchorTo?.(location.hash.slice(1));
+  window.addEventListener('hashchange', navigateToHash, { signal: controller.signal });
+  media.addEventListener('change', setMode, { signal: controller.signal });
+  void setMode();
+  window.addEventListener('pagehide', event => { if (!event.persisted) { generation++; dispose?.(); controller.abort(); } }, { once: true });
+}

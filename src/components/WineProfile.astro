@@ -1,0 +1,6 @@
+---
+interface Props { id: string; notes: string[] }
+const { id, notes } = Astro.props;
+---
+<nav class="profile-nav" aria-label="Perfil de cata"><a href="#nariz" aria-current={id === 'nariz' ? 'true' : undefined}>En nariz</a><a href="#boca" aria-current={id === 'boca' ? 'true' : undefined}>En boca</a></nav>
+<ul class="notes">{notes.map(note => <li>{note}</li>)}</ul>

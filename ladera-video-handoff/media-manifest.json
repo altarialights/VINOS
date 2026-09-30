@@ -1,0 +1,42 @@
+﻿{
+    "mobile":  "768x512",
+    "audio":  false,
+    "desktop":  "1440x960",
+    "fps":  24,
+    "loop":  "0.75s forward crossfade; static identity-protection mask",
+    "files":  [
+                  {
+                      "path":  "media/ladera-tasting-desktop.mp4",
+                      "sha256":  "8117b9f0b5844a67cf1449b60f9234b2d34d7a474b1e6555463fd57be84c7836",
+                      "bytes":  529878
+                  },
+                  {
+                      "path":  "media/ladera-tasting-mobile.mp4",
+                      "sha256":  "1080dcdc0a183c67fa106533c943401bd29589e74f65195c3422cb6ed454e082",
+                      "bytes":  136250
+                  },
+                  {
+                      "path":  "media/ladera-tasting-poster.webp",
+                      "sha256":  "bb33239e88490069fba043e49bcda55d487ac25b8430f1fcf3584919db8a85ea",
+                      "bytes":  170912
+                  },
+                  {
+                      "path":  "media/ladera-vineyard-desktop.mp4",
+                      "sha256":  "7b0ec67e32fc89907a0097d46d9e235dbb7871760af7322d639fe809fd5bfcea",
+                      "bytes":  891935
+                  },
+                  {
+                      "path":  "media/ladera-vineyard-mobile.mp4",
+                      "sha256":  "52c49bee3b42335a53400c98ae046a814e0afdf1779dfd70a95e4ed61217c34a",
+                      "bytes":  238441
+                  },
+                  {
+                      "path":  "media/ladera-vineyard-poster.webp",
+                      "sha256":  "30251ad4b35d6e6a61e74aeabef567a7bcae938d498dc824170f453e965d2b56",
+                      "bytes":  206786
+                  }
+              ],
+    "model":  "kling3_0 pro",
+    "status":  "final-cinemagraph-exports",
+    "duration":  7.25
+}

@@ -1,0 +1,12 @@
+---
+interface Props { desktop?: boolean }
+const { desktop = false } = Astro.props;
+---
+<div class:list={['depth-foreground', desktop ? 'desktop-foreground' : 'mobile-foreground']} aria-hidden="true">
+  {['right', 'left'].map(side => <div class={`foreground-plane foreground-${side}`} data-foreground={side}>
+    <picture>
+      <source media="(max-width:767px)" srcset={`/assets/depth/vine-${side}-mobile.webp`} />
+      <img src={`/assets/depth/vine-${side}-desktop.webp`} alt="" width="960" height="960" decoding="async" loading="eager" fetchpriority="low" />
+    </picture>
+  </div>)}
+</div>

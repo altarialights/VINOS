@@ -1,0 +1,11 @@
+---
+import manifest from '../../ladera-handoff/spec/assets.json';
+interface Props { name: string; alt?: string; priority?: boolean; eager?: boolean; deferred?: boolean; class?: string }
+const { name, alt = '', priority = false, eager = false, deferred = false, class: className } = Astro.props;
+const desktop = manifest.assets.find(a => a.id === name && a.variant === 'desktop')!;
+const mobile = manifest.assets.find(a => a.id === name && a.variant === 'mobile')!;
+---
+<picture class={className}>
+  <source media="(max-width: 767px)" srcset={deferred ? undefined : `/${mobile.path}`} width={mobile.width} height={mobile.height} />
+  <img src={deferred ? undefined : `/${desktop.path}`} data-src={deferred ? `/${desktop.path}` : undefined} alt={alt} width={desktop.width} height={desktop.height} loading={priority || eager ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />
+</picture>

@@ -1,0 +1,250 @@
+{
+  "version": "1.0.0",
+  "coordinateSystem": "x/y percent of scene. Image centred at x/y. heightPct of stable scene height. Preserve image aspect ratio and transparent padding.",
+  "breakpoints": {
+    "mobileMax": 767,
+    "tabletMax": 1099
+  },
+  "nativeScroll": true,
+  "desktopSceneCount": 5,
+  "transitionFraction": 0.22,
+  "ease": "smoothstep: t*t*(3-2*t)",
+  "reducedMotion": "No pinned track, no transforms; stacked readable sections.",
+  "desktop": [
+    {
+      "id": "inicio",
+      "copy": "left",
+      "background": {
+        "scale": 1.04,
+        "xPct": 0,
+        "yPct": 0
+      },
+      "bottle": {
+        "xPct": 74,
+        "yPct": 53,
+        "heightPct": 91,
+        "rotationDeg": 10,
+        "opacity": 1
+      },
+      "grapes": {
+        "xPct": -9,
+        "yPct": 51,
+        "heightPct": 70,
+        "rotationDeg": 0,
+        "opacity": 0.8
+      },
+      "glass": {
+        "xPct": 75,
+        "yPct": 53,
+        "heightPct": 75,
+        "rotationDeg": 0,
+        "opacity": 0
+      },
+      "leaves": {
+        "xPct": 58,
+        "yPct": 40,
+        "heightPct": 105,
+        "rotationDeg": 0,
+        "opacity": 1
+      }
+    },
+    {
+      "id": "origen",
+      "copy": "left",
+      "background": {
+        "scale": 1.07,
+        "xPct": -1,
+        "yPct": 0
+      },
+      "bottle": {
+        "xPct": 111,
+        "yPct": 57,
+        "heightPct": 85,
+        "rotationDeg": 10,
+        "opacity": 0
+      },
+      "grapes": {
+        "xPct": -12,
+        "yPct": 50,
+        "heightPct": 78,
+        "rotationDeg": 0,
+        "opacity": 0.45
+      },
+      "glass": {
+        "xPct": 75,
+        "yPct": 53,
+        "heightPct": 75,
+        "rotationDeg": 0,
+        "opacity": 0
+      },
+      "leaves": {
+        "xPct": 67,
+        "yPct": 36,
+        "heightPct": 112,
+        "rotationDeg": 0,
+        "opacity": 0.65
+      }
+    },
+    {
+      "id": "uva",
+      "copy": "right",
+      "background": {
+        "scale": 1.08,
+        "xPct": -1,
+        "yPct": -1
+      },
+      "bottle": {
+        "xPct": 111,
+        "yPct": 57,
+        "heightPct": 85,
+        "rotationDeg": 10,
+        "opacity": 0
+      },
+      "grapes": {
+        "xPct": 26,
+        "yPct": 55,
+        "heightPct": 88,
+        "rotationDeg": 0,
+        "opacity": 1
+      },
+      "glass": {
+        "xPct": 20,
+        "yPct": 54,
+        "heightPct": 77,
+        "rotationDeg": 0,
+        "opacity": 0
+      },
+      "leaves": {
+        "xPct": 64,
+        "yPct": 33,
+        "heightPct": 114,
+        "rotationDeg": 0,
+        "opacity": 0.4
+      }
+    },
+    {
+      "id": "nariz",
+      "copy": "right",
+      "background": {
+        "scale": 1.08,
+        "xPct": -1,
+        "yPct": -1
+      },
+      "bottle": {
+        "xPct": -15,
+        "yPct": 57,
+        "heightPct": 85,
+        "rotationDeg": 10,
+        "opacity": 0
+      },
+      "grapes": {
+        "xPct": -18,
+        "yPct": 58,
+        "heightPct": 90,
+        "rotationDeg": 0,
+        "opacity": 0
+      },
+      "glass": {
+        "xPct": 25,
+        "yPct": 55,
+        "heightPct": 79,
+        "rotationDeg": 0,
+        "opacity": 1
+      },
+      "leaves": {
+        "xPct": 62,
+        "yPct": 31,
+        "heightPct": 110,
+        "rotationDeg": 0,
+        "opacity": 0.35
+      }
+    },
+    {
+      "id": "boca",
+      "copy": "left",
+      "background": {
+        "scale": 1.09,
+        "xPct": 0,
+        "yPct": -1
+      },
+      "bottle": {
+        "xPct": -15,
+        "yPct": 57,
+        "heightPct": 85,
+        "rotationDeg": 10,
+        "opacity": 0
+      },
+      "grapes": {
+        "xPct": -18,
+        "yPct": 58,
+        "heightPct": 90,
+        "rotationDeg": 0,
+        "opacity": 0
+      },
+      "glass": {
+        "xPct": 75,
+        "yPct": 55,
+        "heightPct": 83,
+        "rotationDeg": 0,
+        "opacity": 1
+      },
+      "leaves": {
+        "xPct": 66,
+        "yPct": 29,
+        "heightPct": 110,
+        "rotationDeg": 0,
+        "opacity": 0.3
+      }
+    }
+  ],
+  "mobile": {
+    "mode": "stacked native sections",
+    "parallaxMaxPx": 12,
+    "minReadingPause": "content remains in document flow",
+    "noPin": true,
+    "productViewportHeight": 44,
+    "heroImageMinPx": 280,
+    "heroImageMaxPx": 420,
+    "bottleRotationDeg": 7,
+    "backgroundPosition": "58% 50%",
+    "leavesOpacity": 0.6,
+    "note": "Do not copy the desktop horizontal path into a phone. Use the SAME images with these layouts."
+  },
+  "tablet": {
+    "mode": "desktop composition only when width>=768 and height>=650; otherwise stacked",
+    "productScaleMultiplier": 0.86,
+    "headlineScaleMultiplier": 0.9
+  },
+  "transitions": [
+    {
+      "from": "inicio",
+      "to": "origen",
+      "rule": "Bottle exits right; background only shallow scale. Leaf passes edge, never masks navigation."
+    },
+    {
+      "from": "origen",
+      "to": "uva",
+      "rule": "Same cluster enters left. No new landscape or leaf variants."
+    },
+    {
+      "from": "uva",
+      "to": "nariz",
+      "rule": "Cluster exits left while glass fades in; quiet crossfade, no fruit-to-glass morph."
+    },
+    {
+      "from": "nariz",
+      "to": "boca",
+      "rule": "Same glass moves across. Keep glass vertical: rotating a flat filled glass produces an implausible liquid surface."
+    },
+    {
+      "from": "boca",
+      "to": "comprar",
+      "rule": "Finish sticky track; commerce follows in normal document flow, same vineyard plate and bottle."
+    },
+    {
+      "from": "comprar",
+      "to": "cata",
+      "rule": "Natural section boundary through dark olive; fixed tasting plate, no claimed continuous camera travel into new geometry."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+---
+import { content, ui } from '../lib/content';
+import Asset from './Asset.astro';
+import NarrativeChapter from './NarrativeChapter.astro';
+import motion from '../../ladera-handoff/spec/motion.json';
+---
+<div class="track" style={`--scene-count:${motion.desktopSceneCount + 1}`}><div class="stage">
+  <template id="scene-template"><div class="shared-scene" aria-hidden="true"><Asset name="vineyard-master" class="backdrop" eager /><div class="scene-shade"></div><div class="reading-veil"></div>{[['bottle', 'bottle-master'], ['grapes', 'grapes-master'], ['glass', 'glass-master'], ['leaves', 'vine-foreground']].map(([layer, name]) => <div class="layer" data-layer={layer}><Asset name={name!} priority={layer === 'bottle' || layer === 'leaves'} eager deferred={layer === 'glass'} /></div>)}</div></template>
+  {content.chapters.map((chapter, index) => <NarrativeChapter chapter={chapter} index={index} />)}
+  <nav class="chapter-dots" aria-label="Capítulos">{content.chapters.map((c, i) => <a href={`#${c.id}`}>{ui.chapterLabels[i]}</a>)}</nav>
+</div></div>

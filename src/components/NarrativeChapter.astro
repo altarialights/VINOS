@@ -1,0 +1,25 @@
+---
+import type { Chapter } from '../lib/content';
+import Asset from './Asset.astro';
+import Arrow from './Arrow.astro';
+import WineProfile from './WineProfile.astro';
+import DepthForeground from './DepthForeground.astro';
+interface Props { chapter: Chapter; index: number }
+const { chapter: c, index } = Astro.props;
+const asset = index === 0 ? 'bottle-master' : index === 2 ? 'grapes-master' : 'glass-master';
+---
+<article class:list={['chapter', { right: index >= 2 }]} id={c.id} aria-labelledby={`title-${c.id}`} tabindex="-1">
+  <div class="copy">
+    <div class="chapter-heading">
+    <p class="eyebrow">{c.eyebrow}</p>
+    {index === 0 ? <h1 id={`title-${c.id}`}><span class="line">{c.title.slice(0, c.title.lastIndexOf(' '))} </span><span class="line">{c.title.slice(c.title.lastIndexOf(' ') + 1)}</span></h1> : <h2 id={`title-${c.id}`}>{c.title}</h2>}
+    </div>
+    {(index === 0 || index === 2) && <div class="static-art"><Asset name={asset} alt={index === 0 ? 'Botella de Ladera Garnacha 2023, producto de demostración' : ''} priority={index === 0} />{index === 0 && <DepthForeground />}</div>}
+    <div class="chapter-detail">
+    {c.subtitle && <p class="subtitle">{c.subtitle}</p>}
+    <p class="body-copy">{c.body}</p>
+    {c.notes && <WineProfile id={c.id} notes={c.notes} />}
+    <div class="actions"><a class="button" href={c.primary.href}>{c.primary.label}<Arrow /></a>{c.secondary && <a class="button secondary" href={c.secondary.href}>{c.secondary.label}<Arrow /></a>}</div>
+    </div>
+  </div>
+</article>
