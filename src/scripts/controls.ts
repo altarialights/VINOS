@@ -8,16 +8,44 @@ export function initControls() {
   const demo = document.querySelector<HTMLDialogElement>('#demo-dialog')!;
   const message = document.querySelector<HTMLElement>('#demo-message')!;
   toggle.hidden = false;
-  toggle.addEventListener('click', () => { menu.showModal(); toggle.setAttribute('aria-expanded', 'true'); }, options);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const openDialog = (dialog: HTMLDialogElement) => {
+    dialog.showModal(); document.documentElement.classList.add('dialog-open');
+  };
+  const closeDialog = async (dialog: HTMLDialogElement) => {
+    if (!dialog.open || dialog.classList.contains('is-closing')) return;
+    dialog.classList.add('is-closing');
+    if (!reduced.matches) await Promise.allSettled(dialog.getAnimations().map(animation => animation.finished));
+    dialog.classList.remove('is-closing'); dialog.close();
+  };
+  [menu, demo].forEach(dialog => {
+    dialog.addEventListener('cancel', event => { event.preventDefault(); void closeDialog(dialog); }, options);
+    dialog.addEventListener('click', event => {
+      const rect = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) void closeDialog(dialog);
+    }, options);
+    dialog.addEventListener('close', () => { if (!document.querySelector('dialog[open]')) document.documentElement.classList.remove('dialog-open'); }, options);
+  });
+  toggle.addEventListener('click', () => { openDialog(menu); toggle.setAttribute('aria-expanded', 'true'); }, options);
   menu.addEventListener('close', () => toggle.setAttribute('aria-expanded', 'false'), options);
-  document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog')!.close(), options));
+  document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(button => button.addEventListener('click', () => { void closeDialog(button.closest('dialog')!); }, options));
   document.addEventListener('click', event => {
     const link = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
     if (!link) return;
     if (menu.open) menu.close();
     // Motion owns anchor positioning and focus, including the stacked fallback.
   }, options);
-  const showDemo = (text: string) => { message.textContent = text; demo.showModal(); };
+  const showDemo = (text: string, kind: 'wine' | 'tasting' | 'notice' = 'notice') => {
+    message.textContent = text;
+    demo.dataset.kind = kind;
+    document.querySelector('#demo-title')!.textContent = kind === 'wine' ? 'Tu selección Ladera' : kind === 'tasting' ? 'Un encuentro con el origen' : 'Un pequeño aviso';
+    document.querySelector('#demo-eyebrow')!.textContent = kind === 'tasting' ? 'UNA PROPUESTA PARA DISFRUTAR' : 'UN VINO PARA COMPARTIR';
+    const details = document.querySelector('#demo-details')!;
+    details.replaceChildren();
+    const rows = kind === 'wine' ? [['En la copa', 'Fruta roja, frescura y un final delicado.'], ['En la mesa', 'Verduras asadas, quesos suaves y largas sobremesas.']] : kind === 'tasting' ? [['El paseo', 'Un recorrido tranquilo entre viñas.'], ['La cata', 'Tres momentos para descubrir aromas, textura y paisaje.'], ['El encuentro', 'Una propuesta de 75 minutos, para compartir sin prisa.']] : [];
+    rows.forEach(([title, body]) => { const row = document.createElement('div'); const label = document.createElement('strong'); const copy = document.createElement('p'); label.textContent = title!; copy.textContent = body!; row.append(label, copy); details.append(row); });
+    openDialog(demo);
+  };
   const setError = (input: HTMLInputElement, message: string) => {
     const error = document.getElementById(`${input.id}-error`)!;
     error.textContent = message; error.hidden = !message;
@@ -47,7 +75,7 @@ export function initControls() {
         if (!authorizedCheckout(result.url, checkoutOrigins)) throw new Error('Dominio no autorizado');
         location.assign(result.url);
       } else if (result.status === 'unavailable') { showDemo('Esta selección no está disponible. Revisa el formato y la cantidad.'); }
-      else { showDemo(`Selección: ${summary.textContent}. ${ui.checkoutDemo}`); }
+      else { showDemo(`Selección: ${summary.textContent}. ${ui.checkoutDemo}`, 'wine'); }
     } catch { showDemo(ui.networkError); }
     finally { button.disabled = false; purchase.removeAttribute('aria-busy'); }
   }, options);
@@ -91,6 +119,7 @@ export function initControls() {
       if (result.status === 'demo') {
         const formatted = new Intl.DateTimeFormat(content.locale, { dateStyle: 'long', timeZone: content.timezone }).format(new Date(`${selection.date}T12:00:00Z`));
         status.textContent = `${formatted} · ${selection.persons} personas. ${content.tasting.demoMessage}`;
+        showDemo(`${formatted} · ${selection.persons} personas. Imagina una pausa en Navaluenga para conocer el paisaje y descubrir Ladera en la copa. Esta consulta no confirma disponibilidad ni crea una reserva.`, 'tasting');
       } else if (result.status === 'empty' || !result.slots.length) { status.textContent = ui.noSlots; }
       else {
         status.textContent = 'Selecciona un horario para solicitar tu cata. La disponibilidad se validará de nuevo al enviar.';

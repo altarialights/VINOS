@@ -1,4 +1,9 @@
+﻿---
+import Asset from './Asset.astro';
+import Arrow from './Arrow.astro';
 ---
-import { ui } from '../lib/content';
----
-<dialog id="demo-dialog" aria-labelledby="demo-title" aria-describedby="demo-message"><button class="close" data-close aria-label="Cerrar aviso" autofocus><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button><h2 id="demo-title">{ui.demoTitle}</h2><p id="demo-message"></p></dialog>
+<dialog id="demo-dialog" class="detail-dialog" aria-labelledby="demo-title" aria-describedby="demo-message">
+  <button class="close" data-close aria-label="Cerrar ventana" autofocus><span aria-hidden="true">×</span></button>
+  <div class="dialog-art" aria-hidden="true"><Asset name="bottle-master" /><span>LADERA · GARNACHA</span></div>
+  <div class="dialog-copy"><p class="eyebrow" id="demo-eyebrow">UN VINO PARA COMPARTIR</p><h2 id="demo-title">Tu selección Ladera</h2><p id="demo-message"></p><div class="dialog-details" id="demo-details"></div><p class="dialog-disclaimer">Experiencia de demostración. Los detalles de la propuesta son ilustrativos; no se realizan pagos ni reservas.</p><button class="button" data-close>Seguir descubriendo<Arrow /></button></div>
+</dialog>
