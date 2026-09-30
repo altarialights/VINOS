@@ -1,0 +1,125 @@
+{
+  "version": "3.0.0",
+  "locale": "es-ES",
+  "timezone": "Europe/Madrid",
+  "demo": true,
+  "brand": {
+    "name": "Nexus & Frontaura",
+    "status": "Propuesta web para Nexus Bodegas y Frontaura & Victoria",
+    "headline": "DOS TIERRAS. UN MISMO LATIDO.",
+    "logo": "assets/nexus/brand-lockup.svg"
+  },
+  "product": {
+    "id": "nexus-crianza-2020",
+    "name": "Nexus Crianza",
+    "grape": "Tempranillo",
+    "vintage": 2020,
+    "verified": true,
+    "price": null,
+    "currency": "EUR",
+    "stock": null,
+    "checkoutUrl": null,
+    "retailers": [],
+    "formats": [
+      {
+        "id": "single",
+        "label": "1 botella",
+        "units": 1
+      },
+      {
+        "id": "case3",
+        "label": "Caja de 3",
+        "units": 3
+      }
+    ]
+  },
+  "chapters": [
+    {
+      "id": "inicio",
+      "eyebrow": "NEXUS & FRONTAURA · RIBERA DEL DUERO Y TORO",
+      "title": "DOS TIERRAS. UN MISMO LATIDO.",
+      "body": "El carácter de la tierra. La emoción de compartirlo. Descubre los vinos de Nexus y Frontaura & Victoria.",
+      "primary": {
+        "label": "Descubrir nuestro origen",
+        "href": "#origen"
+      },
+      "secondary": {
+        "label": "Visitar las bodegas",
+        "href": "#cata"
+      }
+    },
+    {
+      "id": "origen",
+      "eyebrow": "EL ORIGEN · CASTILLA Y LEÓN",
+      "title": "EL DUERO NOS UNE.",
+      "body": "Nexus, en Ribera del Duero. Frontaura & Victoria, en Toro. Dos formas de interpretar una tierra que vive por y para el vino.",
+      "primary": {
+        "label": "Conocer la uva",
+        "href": "#uva"
+      }
+    },
+    {
+      "id": "uva",
+      "eyebrow": "LA UVA",
+      "title": "UNA UVA. DOS CARACTERES.",
+      "subtitle": "Tempranillo",
+      "body": "En Ribera del Duero, Tempranillo. En Toro, Tinta de Toro. La variedad que da voz a nuestros tintos, con la personalidad de cada origen.",
+      "primary": {
+        "label": "Explorar sus matices",
+        "href": "#nariz"
+      }
+    },
+    {
+      "id": "nariz",
+      "eyebrow": "NEXUS CRIANZA · EN NARIZ",
+      "title": "EL ORIGEN SE REVELA.",
+      "body": "Flores y fruta madura, recuerdos de nuez y un fondo balsámico. Los matices de Nexus Crianza invitan a descubrirlo sin prisa.",
+      "notes": [
+        "Fruta madura",
+        "Notas florales",
+        "Fondo balsámico"
+      ],
+      "primary": {
+        "label": "Descubrir en boca",
+        "href": "#boca"
+      }
+    },
+    {
+      "id": "boca",
+      "eyebrow": "NEXUS CRIANZA · EN BOCA",
+      "title": "EQUILIBRIO QUE PERMANECE.",
+      "body": "Frescura, suavidad y estructura. Un Tempranillo de Ribera del Duero que pasa doce meses en roble francés antes de llegar a tu copa.",
+      "notes": [
+        "Fresco",
+        "Suave",
+        "Con estructura"
+      ],
+      "primary": {
+        "label": "Explorar los vinos",
+        "href": "#comprar"
+      }
+    }
+  ],
+  "commerce": {
+    "title": "ELIGE TU FORMA DE SENTIRLO.",
+    "primary": "Descubrir este vino",
+    "secondary": "Visitar la tienda oficial",
+    "unavailableMessage": "Consulta precios, formatos y disponibilidad actualizados en la tienda de la bodega."
+  },
+  "tasting": {
+    "title": "EL VINO, EN SU ORIGEN.",
+    "body": "Acércate a Nexus, en Pesquera de Duero, o a Frontaura & Victoria, en Toro. El paisaje, las bodegas y sus vinos se descubren mejor en primera persona.",
+    "cta": "Preparar mi visita",
+    "availableSlots": [],
+    "venue": null,
+    "durationMinutes": null,
+    "price": null,
+    "bookingEndpoint": null,
+    "contact": null,
+    "demoMessage": "Esta selección no se envía ni confirma una reserva. Consulta la visita con la bodega."
+  },
+  "statusNotes": [
+    "Propuesta de diseño para Nexus Bodegas y Frontaura & Victoria. Los vinos y sus fichas proceden de las webs oficiales; las compras se realizan en sus tiendas.",
+    "Paisaje, uvas y escena de cata creados con IA como imágenes evocativas; no son fotografías documentales de las bodegas."
+  ]
+}

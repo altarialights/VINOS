@@ -1,0 +1,40 @@
+{
+  "brand": "Nexus Bodegas & Frontaura Victoria",
+  "verifiedOn": "2026-10-01",
+  "sources": [
+    "https://www.bodegasnexus.com/",
+    "https://www.bodegasfrontaura.com/",
+    "https://www.bodegasnexus.com/vino/vino-tinto-nexus-crianza/",
+    "https://www.bodegasfrontaura.com/vino/vino-tinto-frontaura-victoria-crianza/",
+    "https://www.bodegasfrontaura.com/vino/vino-tinto-aponte-reserva/"
+  ],
+  "generationTool": "Built-in image_gen",
+  "assets": [
+    {
+      "key": "vineyard",
+      "prompt": "Use case: photorealistic-natural. Create a cinematic photographic website hero background, wide landscape 1536x1024. A vineyard inspired by the Duero valley in Castilla y Leon, Spain: low rolling limestone plateaus, orderly rows of mature Tempranillo vines, ochre dry soil, subtle green foliage in early autumn, warm late afternoon sunlight, distant hazy horizon. Editorial luxury wine campaign, restrained natural olive greens and antique gold, fine atmospheric depth, deep soft shadows on left to leave space for website white heading, vineyard detail primarily middle and right. No bottle, no buildings or landmarks, no people, no text, no logos. This is an evocative conceptual landscape, not a documentary image of a specific estate. Full bleed.",
+      "master": "design/nexus/vineyard-master.png",
+      "web": "public/assets/nexus/vineyard-desktop.webp"
+    },
+    {
+      "key": "grapes",
+      "prompt": "Use case: product-mockup. Luxury wine website botanical cutout. One realistically proportioned compact bunch of ripe Tempranillo wine grapes, small blue-black berries with a powdery natural bloom, one modest olive green grape leaf and woody brown stem. Elegant vertical composition, entire bunch inside frame with 10 percent breathing room on all sides, centered optically. Warm directional studio lighting from upper left, delicate highlights and rich burgundy shadows. Photorealistic botanical specimen of exceptional detail. Portrait 1024x1536. Genuinely transparent alpha background, no floor, no backdrop, no cast shadow outside fruit, no text, no watermark.",
+      "master": "design/nexus/tempranillo-master.png",
+      "web": "public/assets/nexus/tempranillo-desktop.webp"
+    },
+    {
+      "key": "tasting",
+      "prompt": "Use case: photorealistic-natural. Wide luxury winery tasting editorial image 1536x1024. Intimate tasting table in a softly lit historic Castilian stone room, natural limestone arches receding out of focus, dark oak tabletop across lower third. On the RIGHT half two fine long stem wine glasses with a modest pour of ruby red wine, soft linen napkin, one small neutral ceramic dish. LEFT half softly blurred quiet dark stone and shadow, generous negative space for white website form. Warm autumn light entering from the right, dark chocolate and antique gold palette, premium architectural photography, subtle authentic textures. No bottles, no labels, no words, no people, no logos. Fictional atmospheric scene inspired by winery hospitality, not a real estate photograph.",
+      "master": "design/nexus/tasting-master.png",
+      "web": "public/assets/nexus/tasting-desktop.webp"
+    }
+  ],
+  "grapesFinalEdit": "Remove entire dark background; preserve subject on pure white #FFFFFF to match white website card.",
+  "notes": [
+    "Official product images preserved; generated scenes are conceptual, not estate photography.",
+    "Wordmark recreated as SVG typography from the user-supplied reference.",
+    "The existing glass and vine foreground cutouts and fonts are reused.",
+    "Old Ladera ambient videos replaced with new brand images using pausable CSS drift. Original scroll choreography retained.",
+    "Product and visit links point to the official sites. No payment or booking is submitted from the proposal."
+  ]
+}

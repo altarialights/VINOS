@@ -1,19 +1,19 @@
-﻿---
+---
 import { content, ui } from '../lib/content';
 import Arrow from './Arrow.astro';
 const links = [{ href: '#inicio', label: 'El paisaje' }, ...ui.nav.slice(0, 3), { href: '#boca', label: 'En boca' }, { href: '#cata', label: 'Visítanos' }];
 ---
 <a class="skip" href="#inicio">Ir al contenido</a>
 <header class="header">
-  <a class="brand" href="#inicio" aria-label="Ladera, inicio"><img src={`/${content.brand.logo}`} alt="Ladera" width="145" height="32" /></a>
+  <a class="brand" href="#inicio" aria-label="Nexus y Frontaura, inicio"><img src={`/${content.brand.logo}`} alt="Nexus Bodegas y Frontaura Victoria" width="240" height="152" /></a>
   <nav class="desktop-nav" aria-label="Principal">{ui.nav.map(a => <a href={a.href}>{a.label}</a>)}</nav>
   <div class="header-actions"><a class="button small" href="#comprar">Comprar</a><button class="menu-toggle" aria-label="Abrir menú" aria-haspopup="dialog" aria-controls="menu-dialog" aria-expanded="false" hidden><span class="menu-icon" aria-hidden="true"><i></i><i></i></span></button></div>
 </header>
 <dialog id="menu-dialog" class="menu-panel" aria-labelledby="menu-title">
-  <div class="menu-top"><span class="eyebrow">LADERA · NAVALUENGA</span><button class="close" data-close aria-label="Cerrar menú" autofocus><span aria-hidden="true">×</span></button></div>
+  <div class="menu-top"><span class="eyebrow">NEXUS & FRONTAURA</span><button class="close" data-close aria-label="Cerrar menú" autofocus><span aria-hidden="true">×</span></button></div>
   <div class="menu-layout">
-    <div class="menu-editorial"><p class="eyebrow">EL PAISAJE, EN UNA COPA</p><h2 id="menu-title">Lo bueno <br />se descubre <br /><em>sin prisa.</em></h2><p>Un paseo por nuestro origen, la Garnacha y los pequeños matices que hacen grande un vino.</p><span class="menu-caption">Sierra de Gredos · Ávila</span></div>
-    <div class="menu-navigation"><nav class="menu-links" aria-label="Menú">{links.map((a, i) => <a href={a.href} style={`--link-index:${i}`}><span class="menu-number">0{i + 1}</span><span>{a.label}</span><Arrow /></a>)}</nav><a class="button menu-shop" href="#comprar">Lleva Ladera a tu mesa<Arrow /></a><p class="menu-note">Origen que se siente. Vino que se comparte.</p></div>
+    <div class="menu-editorial"><p class="eyebrow">EL PAISAJE, EN UNA COPA</p><h2 id="menu-title">Lo bueno <br />se descubre <br /><em>sin prisa.</em></h2><p>Un paseo por nuestro origen, el Tempranillo y los pequeños matices que hacen grande un vino.</p><span class="menu-caption">Ribera del Duero · Toro</span></div>
+    <div class="menu-navigation"><nav class="menu-links" aria-label="Menú">{links.map((a, i) => <a href={a.href} style={`--link-index:${i}`}><span class="menu-number">0{i + 1}</span><span>{a.label}</span><Arrow /></a>)}</nav><a class="button menu-shop" href="#comprar">Descubre nuestros vinos<Arrow /></a><p class="menu-note">Origen que se siente. Vino que se comparte.</p></div>
   </div>
 </dialog>
 

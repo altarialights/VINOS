@@ -48,7 +48,7 @@ h2 { font-size: clamp(32px, 9.3vw, 60px); }
 .chapter#inicio { grid-area: 1 / 1; padding-top: 100px; padding-bottom: 100px; }
 .copy { width: 100%; max-width: 640px; margin-inline: auto; position: relative; z-index: 5; }
 .narrative-landscape { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-.narrative-landscape > div { position: sticky; top: 0; height: 100svh; background: linear-gradient(#080f0b9c, #080f0bc9), url('/media/ladera/ladera-vineyard-poster.webp') 58% center / cover; mask-image: linear-gradient(transparent, #000 20%, #000 72%, transparent); }
+.narrative-landscape > div { position: sticky; top: 0; height: 100svh; background: linear-gradient(#080f0b9c, #080f0bc9), url('/assets/nexus/vineyard-desktop.webp') 58% center / cover; mask-image: linear-gradient(transparent, #000 20%, #000 72%, transparent); }
 .sensory-sequence { position: relative; z-index: 1; padding-top: 32px; padding-bottom: 96px; }
 .sensory-visual { height: clamp(300px, 44svh, 420px); display: flex; justify-content: center; margin-bottom: 40px; }
 .sensory-visual picture, .sensory-visual img { display: block; height: 100%; width: auto; object-fit: contain; }
@@ -121,7 +121,7 @@ html:not(.motion-desktop) .sensory-sequence #boca { padding-top: 64px; }
 .motion-desktop .ambient-controls { position: absolute; right: var(--page-pad); bottom: 24px; padding: 0; }
 .commerce, .tasting { position: relative; padding: 90px var(--page-pad) 70px; isolation: isolate; }
 .commerce { background: var(--ink); }
-.commerce::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(#080f0bb0, #080f0be6), url('/assets/vineyard-master-mobile.webp') center / cover; mask-image: linear-gradient(transparent, #000 25%, #000 65%, transparent); }
+.commerce::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(#080f0bb0, #080f0be6), url('/assets/nexus/vineyard-mobile.webp') center / cover; mask-image: linear-gradient(transparent, #000 25%, #000 65%, transparent); }
 .commerce-grid { max-width: 1450px; margin: auto; display: grid; gap: 28px; align-items: center; }
 .commerce-visual { height: 360px; display: flex; justify-content: center; }
 .commerce-grid > *, .chapter-detail { min-width: 0; }
@@ -184,7 +184,7 @@ dialog .close { margin-left: auto; margin-bottom: 20px; }
 .menu-links a:hover { background: #f4f0df0a; }
 .noscript-notice { padding: 12px var(--page-pad); background: var(--forest); }
 @media (min-width: 768px) {
-  .commerce::before { background-image: linear-gradient(90deg, #080f0b60, #080f0be6), url('/assets/vineyard-master.webp'); }
+  .commerce::before { background-image: linear-gradient(90deg, #080f0b60, #080f0be6), url('/assets/nexus/vineyard-desktop.webp'); }
   .commerce-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: 5vw; }
   .commerce-visual { height: 520px; }
   .commerce h2, .tasting h2 { font-size: clamp(38px, 4.5vw, 72px); }
@@ -319,3 +319,33 @@ dialog .close { margin: 0; flex-shrink: 0; min-width: 46px; min-height: 46px; }
 @media (prefers-reduced-motion: reduce) {
   dialog[open], dialog[open]::backdrop, .menu-panel[open] .menu-links a { animation: none !important; }
 }
+
+/* Nexus & Frontaura: shared identity, original spatial and motion design. */
+:root { --forest: #201914; --ink: #120f0c; --amber: #c6ad76; --muted: #d8d0c4; --header-height: 96px; }
+.header { background: linear-gradient(#120f0cf2, #120f0c9c 75%, #120f0c00); }
+.brand { width: 145px; }
+.brand img { height: 80px; object-fit: contain; }
+.menu-panel { background: #211b16; }
+.menu-editorial h2 em { color: var(--amber); }
+#uva .static-art, .subject-layer[data-layer='grapes'] { background: #fff; }
+.brand-ambient img { animation: ambient-drift 24s ease-in-out infinite alternate; animation-play-state: paused; }
+.brand-ambient[data-state='playing'] img { animation-play-state: running; }
+@keyframes ambient-drift { from { transform: scale(1.025) translateX(-.4%); } to { transform: scale(1.075) translateX(.4%); } }
+.wine-select { width: 100%; max-width: 100%; margin-bottom: 20px; color-scheme: dark; }
+.wine-origin { color: var(--amber); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.wine-facts { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; list-style: none; font: 17px/1.5 var(--serif); color: var(--muted); }
+.wine-facts li { border-bottom: 1px solid var(--rule); padding-bottom: 8px; }
+.wine-description { max-width: 44ch; font: 19px/1.55 var(--serif); }
+.dialog-official { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 16px; font-size: 14px; }
+.dialog-art { background: radial-gradient(ellipse at center, #fff, #ede7dd); }
+.detail-dialog[data-kind='tasting'] .dialog-art { background: linear-gradient(#120f0c25, #120f0c70), url('/assets/nexus/tasting-mobile.webp') 65% center / cover; }
+.detail-dialog[data-kind='tasting'] .dialog-art picture { visibility: hidden; }
+.detail-dialog[data-kind='tasting'] .dialog-art > span { display: none; }
+@media (max-width:1099px) {
+  :root { --header-height: 84px; }
+  .header { background: linear-gradient(#120f0c, #120f0cf2 72%, #120f0c00); }
+  .brand { width: 116px; }
+  .brand img { height: 70px; }
+  .chapter#inicio { padding-top: 120px; }
+}
+@media (prefers-reduced-motion:reduce) { .brand-ambient img { animation: none !important; } }

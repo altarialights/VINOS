@@ -1,7 +1,7 @@
 import { motion, chapterAt } from '../config/motion-v2';
 import type { gsap as GSAP } from 'gsap';
 
-declare global { interface Window { laderaMotionFallback?: number; laderaMotionFallbackExceeded?: boolean } }
+declare global { interface Window { nexusMotionFallback?: number; nexusMotionFallbackExceeded?: boolean } }
 type Timeline = ReturnType<typeof GSAP.timeline>;
 type Pinned = { timeline: Timeline; destination: (id: string) => number | undefined; seek: (id: string) => void };
 const clamp = (value: number) => Math.max(0, Math.min(1, value));
@@ -128,12 +128,12 @@ export async function initMotion() {
       chapters.forEach(chapter => { chapter.inert = false; chapter.removeAttribute('aria-hidden'); });
       dispose = stackedParallax();
       if (inNarrative) navigate(activeId, true);
-      clearTimeout(window.laderaMotionFallback);
+      clearTimeout(window.nexusMotionFallback);
       return;
     }
     root.classList.add('motion-desktop');
-    clearTimeout(window.laderaMotionFallback);
-    window.laderaMotionFallback = window.setTimeout(() => {
+    clearTimeout(window.nexusMotionFallback);
+    window.nexusMotionFallback = window.setTimeout(() => {
       if (run !== generation || root.classList.contains('enhanced')) return;
       generation++; root.classList.remove('motion-desktop');
       chapters.forEach(chapter => { chapter.inert = false; chapter.removeAttribute('aria-hidden'); });
@@ -148,7 +148,7 @@ export async function initMotion() {
       await Promise.allSettled(firstImages.map(img => img.decode()));
       if (run !== generation) return;
       gsap.registerPlugin(ScrollTrigger);
-      clearTimeout(window.laderaMotionFallback);
+      clearTimeout(window.nexusMotionFallback);
       const layer = (name: string) => stage.querySelector<HTMLElement>(`[data-layer="${name}"]`)!;
       const loaded = new Set<string>();
       const prepare = (name: string) => {
@@ -202,7 +202,7 @@ export async function initMotion() {
         timeline.to(layer('glass'), { scale: 1, opacity: 1, duration: .8, ease: 'power1.inOut' }, 4.2);
         timeline.to(layer('glass'), { scale: 1.045, duration: 2.95, ease: 'none' }, 5);
         timeline.to('.sequence-exit', { opacity: 1, duration: .8, ease: 'none' }, motion.duration - .8);
-        trigger = ScrollTrigger.create({ id: 'ladera-narrative-v2', trigger: track, start: 'top top', end: 'bottom bottom', animation: timeline, scrub: motion.scrub,
+        trigger = ScrollTrigger.create({ id: 'nexus-narrative', trigger: track, start: 'top top', end: 'bottom bottom', animation: timeline, scrub: motion.scrub,
           onUpdate(self) { if (self.progress > .18) prepare('grapes'); if (self.progress > .36) prepare('glass'); },
         });
       }, stage);

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "vineyard",
+    "variant": "desktop",
+    "path": "assets/nexus/vineyard-desktop.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha": false
+  },
+  {
+    "name": "vineyard",
+    "variant": "mobile",
+    "path": "assets/nexus/vineyard-mobile.webp",
+    "width": 640,
+    "height": 427,
+    "alpha": false
+  },
+  {
+    "name": "tempranillo",
+    "variant": "desktop",
+    "path": "assets/nexus/tempranillo-desktop.webp",
+    "width": 1024,
+    "height": 1536,
+    "alpha": false
+  },
+  {
+    "name": "tempranillo",
+    "variant": "mobile",
+    "path": "assets/nexus/tempranillo-mobile.webp",
+    "width": 640,
+    "height": 960,
+    "alpha": false
+  },
+  {
+    "name": "tasting",
+    "variant": "desktop",
+    "path": "assets/nexus/tasting-desktop.webp",
+    "width": 1536,
+    "height": 1024,
+    "alpha": false
+  },
+  {
+    "name": "tasting",
+    "variant": "mobile",
+    "path": "assets/nexus/tasting-mobile.webp",
+    "width": 640,
+    "height": 427,
+    "alpha": false
+  },
+  {
+    "name": "nexus-crianza",
+    "variant": "desktop",
+    "path": "assets/nexus/nexus-crianza-desktop.webp",
+    "width": 980,
+    "height": 1480,
+    "alpha": true
+  },
+  {
+    "name": "nexus-crianza",
+    "variant": "mobile",
+    "path": "assets/nexus/nexus-crianza-mobile.webp",
+    "width": 640,
+    "height": 967,
+    "alpha": true
+  },
+  {
+    "name": "frontaura-crianza",
+    "variant": "desktop",
+    "path": "assets/nexus/frontaura-crianza-desktop.webp",
+    "width": 980,
+    "height": 1480,
+    "alpha": true
+  },
+  {
+    "name": "frontaura-crianza",
+    "variant": "mobile",
+    "path": "assets/nexus/frontaura-crianza-mobile.webp",
+    "width": 640,
+    "height": 967,
+    "alpha": true
+  },
+  {
+    "name": "aponte-reserva",
+    "variant": "desktop",
+    "path": "assets/nexus/aponte-reserva-desktop.webp",
+    "width": 980,
+    "height": 1480,
+    "alpha": true
+  },
+  {
+    "name": "aponte-reserva",
+    "variant": "mobile",
+    "path": "assets/nexus/aponte-reserva-mobile.webp",
+    "width": 640,
+    "height": 967,
+    "alpha": true
+  }
+]

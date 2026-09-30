@@ -1,7 +1,7 @@
 ---
 import { content, ui } from '../lib/content';
 import Asset from './Asset.astro';
-import AmbientVideo from './AmbientVideo.astro';
+import AmbientScene from './AmbientScene.astro';
 import AmbientControl from './AmbientControl.astro';
 import NarrativeChapter from './NarrativeChapter.astro';
 import DepthForeground from './DepthForeground.astro';
@@ -10,7 +10,7 @@ import { motion } from '../config/motion-v2';
 <div class="track" style={`--scene-count:${motion.scrollScreens + 1}`}><div class="stage">
   <div class="narrative-landscape" aria-hidden="true"><div></div></div>
   <div class="shared-scene" aria-hidden="true">
-    <div class="scene-camera"><AmbientVideo scene="vineyard" priority /></div>
+    <div class="scene-camera"><AmbientScene scene="vineyard" priority /></div>
     <div class="scene-shade"></div><div class="reading-veil"></div>
     {[
       ['bottle', 'bottle-master', 74, 53, 91, 7],

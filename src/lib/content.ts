@@ -1,4 +1,4 @@
-import source from '../../ladera-handoff/spec/content.json';
+import source from '../data/brand.json';
 export const content = source;
 export type Chapter = (typeof source.chapters)[number];
 export const ui = {
@@ -12,5 +12,5 @@ export const ui = {
   dateError: 'Elige una fecha válida, a partir de hoy.',
   personsError: 'Indica un número entero de personas entre 1 y 12.',
   quantityError: 'Indica una cantidad entera entre 1 y 12.',
-  footer: 'LADERA · CONCEPTO DE DEMOSTRACIÓN',
+  footer: 'NEXUS BODEGAS & FRONTAURA VICTORIA · RIBERA DEL DUERO Y TORO',
 };

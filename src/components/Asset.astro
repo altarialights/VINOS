@@ -1,9 +1,11 @@
 ---
 import manifest from '../../ladera-handoff/spec/assets.json';
+import brandAssets from '../data/assets.json';
 interface Props { name: string; alt?: string; priority?: boolean; eager?: boolean; deferred?: boolean; class?: string }
 const { name, alt = '', priority = false, eager = false, deferred = false, class: className } = Astro.props;
-const desktop = manifest.assets.find(a => a.id === name && a.variant === 'desktop')!;
-const mobile = manifest.assets.find(a => a.id === name && a.variant === 'mobile')!;
+const replacement = ({ 'bottle-master': 'nexus-crianza', 'grapes-master': 'tempranillo', 'vineyard-master': 'vineyard', 'tasting-master': 'tasting' } as Record<string, string>)[name];
+const desktop = brandAssets.find(a => a.name === replacement && a.variant === 'desktop') ?? manifest.assets.find(a => a.id === name && a.variant === 'desktop')!;
+const mobile = brandAssets.find(a => a.name === replacement && a.variant === 'mobile') ?? manifest.assets.find(a => a.id === name && a.variant === 'mobile')!;
 ---
 <picture class={className}>
   <source media="(max-width: 767px)" srcset={deferred ? undefined : `/${mobile.path}`} width={mobile.width} height={mobile.height} />

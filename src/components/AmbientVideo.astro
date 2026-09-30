@@ -1,9 +1,0 @@
----
-interface Props { scene: 'vineyard' | 'tasting'; priority?: boolean; class?: string }
-const { scene, priority = false, class: className } = Astro.props;
-const root = `/media/ladera/ladera-${scene}`;
----
-<div class:list={['ambient', className]} data-ambient={scene} data-state="poster">
-  <img class="ambient-poster" src={`${root}-poster.webp`} alt="" width="1440" height="960" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />
-  <video muted playsinline loop preload="none" tabindex="-1" aria-hidden="true" disablepictureinpicture disableRemotePlayback data-desktop={`${root}-desktop.mp4`} data-mobile={`${root}-mobile.mp4`}></video>
-</div>

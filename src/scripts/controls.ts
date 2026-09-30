@@ -1,14 +1,15 @@
-import { adapter, authorizedCheckout, checkoutOrigins, todayInMadrid, validCount, validDate } from '../lib/commerce';
+﻿import { todayInMadrid, validCount, validDate } from '../lib/commerce';
 import { content, ui } from '../lib/content';
+import { wines, visits, type Wine } from '../lib/wines';
+
 export function initControls() {
   const abort = new AbortController();
   const options = { signal: abort.signal };
   const menu = document.querySelector<HTMLDialogElement>('#menu-dialog')!;
   const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle')!;
   const demo = document.querySelector<HTMLDialogElement>('#demo-dialog')!;
-  const message = document.querySelector<HTMLElement>('#demo-message')!;
-  toggle.hidden = false;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const put = (selector: string, value: string) => { document.querySelector(selector)!.textContent = value; };
   const openDialog = (dialog: HTMLDialogElement) => {
     dialog.showModal(); document.documentElement.classList.add('dialog-open');
   };
@@ -26,118 +27,70 @@ export function initControls() {
     }, options);
     dialog.addEventListener('close', () => { if (!document.querySelector('dialog[open]')) document.documentElement.classList.remove('dialog-open'); }, options);
   });
+  toggle.hidden = false;
   toggle.addEventListener('click', () => { openDialog(menu); toggle.setAttribute('aria-expanded', 'true'); }, options);
   menu.addEventListener('close', () => toggle.setAttribute('aria-expanded', 'false'), options);
   document.querySelectorAll<HTMLButtonElement>('[data-close]').forEach(button => button.addEventListener('click', () => { void closeDialog(button.closest('dialog')!); }, options));
   document.addEventListener('click', event => {
-    const link = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
-    if (!link) return;
-    if (menu.open) menu.close();
-    // Motion owns anchor positioning and focus, including the stacked fallback.
+    if ((event.target as Element).closest('a[href^="#"]') && menu.open) menu.close();
   }, options);
-  const showDemo = (text: string, kind: 'wine' | 'tasting' | 'notice' = 'notice') => {
-    message.textContent = text;
+
+  const updateBottle = (container: Element, wine: Wine) => {
+    container.querySelector('source')!.srcset = `/assets/nexus/${wine.image}-mobile.webp`;
+    const img = container.querySelector('img')!;
+    img.src = `/assets/nexus/${wine.image}-desktop.webp`;
+    img.alt = `Botella de ${wine.name}, ${wine.origin}`;
+  };
+  const select = document.querySelector<HTMLSelectElement>('#wine-select')!;
+  const selectedWine = () => wines.find(wine => wine.id === select.value) ?? wines[0];
+  select.addEventListener('change', () => {
+    const wine = selectedWine();
+    updateBottle(document.querySelector('#selected-wine-art')!, wine);
+    put('#wine-origin', wine.origin); put('#wine-name', `${wine.name} · ${wine.vintage}`);
+    put('#wine-grape', wine.grape); put('#wine-aging', wine.aging); put('#wine-description', wine.tasting);
+    document.querySelector<HTMLAnchorElement>('#wine-shop')!.href = wine.url;
+  }, options);
+  const showDetails = (kind: 'wine' | 'tasting', title: string, message: string, rows: [string, string][], url: string) => {
     demo.dataset.kind = kind;
-    document.querySelector('#demo-title')!.textContent = kind === 'wine' ? 'Tu selección Ladera' : kind === 'tasting' ? 'Un encuentro con el origen' : 'Un pequeño aviso';
-    document.querySelector('#demo-eyebrow')!.textContent = kind === 'tasting' ? 'UNA PROPUESTA PARA DISFRUTAR' : 'UN VINO PARA COMPARTIR';
-    const details = document.querySelector('#demo-details')!;
-    details.replaceChildren();
-    const rows = kind === 'wine' ? [['En la copa', 'Fruta roja, frescura y un final delicado.'], ['En la mesa', 'Verduras asadas, quesos suaves y largas sobremesas.']] : kind === 'tasting' ? [['El paseo', 'Un recorrido tranquilo entre viñas.'], ['La cata', 'Tres momentos para descubrir aromas, textura y paisaje.'], ['El encuentro', 'Una propuesta de 75 minutos, para compartir sin prisa.']] : [];
-    rows.forEach(([title, body]) => { const row = document.createElement('div'); const label = document.createElement('strong'); const copy = document.createElement('p'); label.textContent = title!; copy.textContent = body!; row.append(label, copy); details.append(row); });
+    put('#demo-title', title); put('#demo-message', message);
+    put('#demo-eyebrow', kind === 'wine' ? 'NEXUS & FRONTAURA · NUESTROS VINOS' : 'ENOTURISMO · EL VINO EN SU ORIGEN');
+    const details = document.querySelector('#demo-details')!; details.replaceChildren();
+    rows.forEach(([title, text]) => {
+      const row = document.createElement('div'); const label = document.createElement('strong'); const copy = document.createElement('p');
+      label.textContent = title; copy.textContent = text; row.append(label, copy); details.append(row);
+    });
+    put('#demo-disclaimer', kind === 'wine' ? 'Información de la ficha oficial de la bodega. Comprueba allí la añada, el formato, el precio y la disponibilidad antes de comprar.' : 'Tu selección no se ha enviado. La bodega debe confirmar horarios, condiciones y disponibilidad.');
+    const link = document.querySelector<HTMLAnchorElement>('#demo-official')!;
+    link.href = url; link.textContent = kind === 'wine' ? 'Ver ficha y comprar en la bodega ↗' : 'Consultar la visita con la bodega ↗';
     openDialog(demo);
   };
-  const setError = (input: HTMLInputElement, message: string) => {
-    const error = document.getElementById(`${input.id}-error`)!;
-    error.textContent = message; error.hidden = !message;
-    input.setAttribute('aria-invalid', String(Boolean(message)));
-  };
-  const purchase = document.querySelector<HTMLFormElement>('#purchase-form')!;
-  const quantity = document.querySelector<HTMLInputElement>('#quantity')!;
-  const summary = document.querySelector<HTMLElement>('#selection-summary')!;
-  const format = () => content.product.formats.find(f => f.id === new FormData(purchase).get('format'))!;
-  const updateSummary = () => {
-    const selected = format(); const n = quantity.valueAsNumber;
-    if (!validCount(n)) { summary.textContent = 'Cantidad pendiente de corregir'; return; }
-    const bottles = n * selected.units;
-    summary.textContent = `${n} × ${selected.label} · ${bottles} ${bottles === 1 ? 'botella' : 'botellas'} en total`;
-    setError(quantity, '');
-  };
-  purchase.addEventListener('input', updateSummary, options);
-  purchase.addEventListener('submit', async event => {
-    event.preventDefault();
-    if (!validCount(quantity.valueAsNumber)) { setError(quantity, ui.quantityError); quantity.focus(); return; }
-    setError(quantity, '');
-    const button = purchase.querySelector<HTMLButtonElement>('[type="submit"]')!;
-    button.disabled = true; purchase.setAttribute('aria-busy', 'true');
-    try {
-      const result = await adapter.createCheckout(content.product.id, format().id, quantity.valueAsNumber);
-      if (result.status === 'redirect') {
-        if (!authorizedCheckout(result.url, checkoutOrigins)) throw new Error('Dominio no autorizado');
-        location.assign(result.url);
-      } else if (result.status === 'unavailable') { showDemo('Esta selección no está disponible. Revisa el formato y la cantidad.'); }
-      else { showDemo(`Selección: ${summary.textContent}. ${ui.checkoutDemo}`, 'wine'); }
-    } catch { showDemo(ui.networkError); }
-    finally { button.disabled = false; purchase.removeAttribute('aria-busy'); }
+  document.querySelector('[data-wine-details]')!.addEventListener('click', () => {
+    const wine = selectedWine();
+    updateBottle(demo.querySelector('.dialog-art')!, wine);
+    put('.dialog-art > span', wine.origin);
+    showDetails('wine', wine.name, wine.tasting, [['Origen y añada', `${wine.origin} · ${wine.vintage}`], ['Variedad y crianza', `${wine.grape}. ${wine.aging}.`], ['En la mesa', wine.pairing]], wine.url);
   }, options);
-  const retailersButton = document.querySelector<HTMLButtonElement>('[data-retailers]')!;
-  const retailerStatus = document.querySelector<HTMLElement>('#retailer-status')!;
-  retailersButton.addEventListener('click', async () => {
-    retailersButton.disabled = true; retailerStatus.textContent = 'Consultando puntos de venta…';
-    try {
-      const retailers = await adapter.getRetailers(content.product.id);
-      retailerStatus.replaceChildren();
-      if (!retailers.length) retailerStatus.textContent = ui.retailersEmpty;
-      else {
-        const list = document.createElement('ul'); list.className = 'retailers';
-        retailers.forEach(retailer => { const row = document.createElement('li'); const link = document.createElement('a'); const url = new URL(retailer.url); if (!['https:', 'http:'].includes(url.protocol)) return; link.href = url.href; link.textContent = retailer.name; row.append(link); if (retailer.address) row.append(` · ${retailer.address}`); list.append(row); });
-        retailerStatus.append(list);
-      }
-    } catch { retailerStatus.textContent = ui.networkError; }
-    finally { retailersButton.disabled = false; }
-  }, options);
+
   const tasting = document.querySelector<HTMLFormElement>('#tasting-form')!;
   const date = document.querySelector<HTMLInputElement>('#date')!;
   const persons = document.querySelector<HTMLInputElement>('#persons')!;
+  const venue = document.querySelector<HTMLSelectElement>('#visit-venue')!;
   const status = document.querySelector<HTMLElement>('#tasting-status')!;
-  const slots = document.querySelector<HTMLElement>('#tasting-slots')!;
-  let requestVersion = 0;
+  const setError = (input: HTMLInputElement, message: string) => {
+    const error = document.getElementById(`${input.id}-error`)!;
+    error.textContent = message; error.hidden = !message; input.setAttribute('aria-invalid', String(Boolean(message)));
+  };
   date.min = todayInMadrid();
-  tasting.addEventListener('input', () => { requestVersion++; status.textContent = ''; slots.hidden = true; slots.replaceChildren(); }, options);
-  tasting.addEventListener('submit', async event => {
+  tasting.addEventListener('input', () => { status.textContent = ''; }, options);
+  tasting.addEventListener('submit', event => {
     event.preventDefault(); date.min = todayInMadrid();
     const dateOk = validDate(date.value); const personsOk = validCount(persons.valueAsNumber);
     setError(date, dateOk ? '' : ui.dateError); setError(persons, personsOk ? '' : ui.personsError);
     if (!dateOk || !personsOk) { (dateOk ? persons : date).focus(); return; }
-    const version = ++requestVersion;
-    const selection = { date: date.value, persons: persons.valueAsNumber };
-    const button = tasting.querySelector<HTMLButtonElement>('[type="submit"]')!;
-    button.disabled = true; tasting.setAttribute('aria-busy', 'true'); slots.hidden = true; slots.replaceChildren();
-    status.textContent = 'Consultando disponibilidad…';
-    try {
-      const result = await adapter.getTastingAvailability(selection.date, selection.persons);
-      if (version !== requestVersion) return;
-      if (result.status === 'demo') {
-        const formatted = new Intl.DateTimeFormat(content.locale, { dateStyle: 'long', timeZone: content.timezone }).format(new Date(`${selection.date}T12:00:00Z`));
-        status.textContent = `${formatted} · ${selection.persons} personas. ${content.tasting.demoMessage}`;
-        showDemo(`${formatted} · ${selection.persons} personas. Imagina una pausa en Navaluenga para conocer el paisaje y descubrir Ladera en la copa. Esta consulta no confirma disponibilidad ni crea una reserva.`, 'tasting');
-      } else if (result.status === 'empty' || !result.slots.length) { status.textContent = ui.noSlots; }
-      else {
-        status.textContent = 'Selecciona un horario para solicitar tu cata. La disponibilidad se validará de nuevo al enviar.';
-        slots.hidden = false;
-        result.slots.filter(slot => slot.capacity >= selection.persons).forEach(slot => {
-          const choose = document.createElement('button'); choose.type = 'button'; choose.className = 'button secondary'; choose.textContent = slot.label;
-          choose.addEventListener('click', async () => {
-            choose.disabled = true;
-            try { const reply = await adapter.createTastingRequest({ ...selection, slotId: slot.id }); if (version !== requestVersion) return; status.textContent = reply.status === 'received' ? `Solicitud recibida. Referencia: ${reply.requestId}. Esto no confirma una reserva.` : content.tasting.demoMessage; }
-            catch { if (version === requestVersion) status.textContent = ui.networkError; }
-            finally { choose.disabled = false; }
-          }, options);
-          slots.append(choose);
-        });
-        if (!slots.childElementCount) { status.textContent = ui.noSlots; slots.hidden = true; }
-      }
-    } catch { if (version === requestVersion) status.textContent = ui.networkError; }
-    finally { button.disabled = false; tasting.removeAttribute('aria-busy'); }
+    const visit = visits[venue.value as keyof typeof visits] ?? visits.nexus;
+    const formatted = new Intl.DateTimeFormat(content.locale, { dateStyle: 'long', timeZone: content.timezone }).format(new Date(`${date.value}T12:00:00Z`));
+    status.textContent = `${visit.name} · ${formatted} · ${persons.valueAsNumber} personas. Selección pendiente de consultar con la bodega.`;
+    showDetails('tasting', 'Un encuentro con el origen', 'Descubre el lugar donde nace el vino. Prepara tu encuentro con el paisaje, la bodega y sus historias.', [['Tu destino', visit.name], ['Tu propuesta', `${formatted} · ${persons.valueAsNumber} personas`], ['El siguiente paso', 'Consulta con la bodega las experiencias y los horarios disponibles.']], visit.url);
   }, options);
   window.addEventListener('pagehide', event => { if (!event.persisted) abort.abort(); }, { once: true });
 }

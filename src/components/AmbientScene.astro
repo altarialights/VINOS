@@ -1,0 +1,7 @@
+﻿---
+interface Props { scene: 'vineyard' | 'tasting'; priority?: boolean; class?: string }
+const { scene, priority = false, class: className } = Astro.props;
+---
+<div class:list={['ambient', 'brand-ambient', className]} data-ambient={scene} data-state="poster">
+  <picture><source media="(max-width:767px)" srcset={`/assets/nexus/${scene}-mobile.webp`} /><img class="ambient-poster" src={`/assets/nexus/${scene}-desktop.webp`} alt="" width="1536" height="1024" loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" /></picture>
+</div>

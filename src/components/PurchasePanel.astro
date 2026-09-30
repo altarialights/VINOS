@@ -1,18 +1,18 @@
----
+﻿---
 import { content } from '../lib/content';
+import { wines } from '../lib/wines';
 import Asset from './Asset.astro';
 import Arrow from './Arrow.astro';
+const wine = wines[0];
 ---
 <section id="comprar" class="commerce" aria-labelledby="buy-title" tabindex="-1"><div class="commerce-grid">
-  <div class="commerce-visual"><Asset name="bottle-master" alt="Ladera Garnacha 2023, producto de demostración" /></div>
-  <div><p class="eyebrow">EL VINO</p><h2 id="buy-title">{content.commerce.title}</h2><p class="product-name">{content.product.name} · {content.product.grape} {content.product.vintage}</p>
-    <form id="purchase-form" novalidate>
-      <fieldset><legend>Elige tu formato</legend><div class="format-options">{content.product.formats.map((format, i) => <label><input type="radio" name="format" value={format.id} checked={i === 0} /><span>{format.label}</span></label>)}</div></fieldset>
-      <div class="quantity"><label for="quantity">Cantidad</label><input id="quantity" name="quantity" type="number" min="1" max="12" step="1" value="1" required inputmode="numeric" aria-describedby="quantity-error selection-summary" /></div>
-      <p id="quantity-error" class="form-error" hidden></p><p class="selection-summary" id="selection-summary" aria-live="polite">1 × 1 botella · 1 botella en total</p>
-      <div class="shop-actions"><button class="button" type="submit">{content.commerce.primary}<Arrow /></button><button class="button secondary" type="button" data-retailers>{content.commerce.secondary}<Arrow /></button></div>
-      <p class="fine mt-4">{content.commerce.unavailableMessage}</p><div id="retailer-status" class="status" role="status"></div>
-    </form>
-    <div class="cross-sell"><p>¿Prefieres descubrirlo aquí?</p><a href="#cata">Reserva una cata<Arrow /></a></div>
+  <div class="commerce-visual" id="selected-wine-art"><Asset name="bottle-master" alt="Botella de Nexus Crianza, D.O. Ribera del Duero" /></div>
+  <div><p class="eyebrow">NUESTRA SELECCIÓN</p><h2 id="buy-title">{content.commerce.title}</h2>
+    <label class="field-label" for="wine-select">Descubre un vino</label>
+    <select class="wine-select" id="wine-select">{wines.map(w => <option value={w.id}>{w.name} · {w.vintage}</option>)}</select>
+    <div id="wine-information" aria-live="polite" aria-atomic="true"><p class="wine-origin" id="wine-origin">{wine.origin}</p><h3 class="product-name" id="wine-name">{wine.name} · {wine.vintage}</h3><ul class="wine-facts"><li id="wine-grape">{wine.grape}</li><li id="wine-aging">{wine.aging}</li></ul><p class="wine-description" id="wine-description">{wine.tasting}</p></div>
+    <div class="shop-actions"><button class="button" type="button" data-wine-details>{content.commerce.primary}<Arrow /></button><a class="button secondary" id="wine-shop" href={wine.url} target="_blank" rel="noopener noreferrer">{content.commerce.secondary}<Arrow /></a></div>
+    <p class="fine mt-4">{content.commerce.unavailableMessage}</p>
+    <div class="cross-sell"><p>El vino se entiende mejor en su origen.</p><a href="#cata">Descubre nuestras bodegas<Arrow /></a></div>
   </div>
 </div></section>

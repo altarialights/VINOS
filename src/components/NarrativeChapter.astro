@@ -14,7 +14,7 @@ const asset = index === 0 ? 'bottle-master' : index === 2 ? 'grapes-master' : 'g
     <p class="eyebrow">{c.eyebrow}</p>
     {index === 0 ? <h1 id={`title-${c.id}`}><span class="line">{c.title.slice(0, c.title.lastIndexOf(' '))} </span><span class="line">{c.title.slice(c.title.lastIndexOf(' ') + 1)}</span></h1> : <h2 id={`title-${c.id}`}>{c.title}</h2>}
     </div>
-    {(index === 0 || index === 2) && <div class="static-art"><Asset name={asset} alt={index === 0 ? 'Botella de Ladera Garnacha 2023, producto de demostración' : ''} priority={index === 0} />{index === 0 && <DepthForeground />}</div>}
+    {(index === 0 || index === 2) && <div class="static-art"><Asset name={asset} alt={index === 0 ? 'Botella de Nexus Crianza, D.O. Ribera del Duero' : ''} priority={index === 0} />{index === 0 && <DepthForeground />}</div>}
     <div class="chapter-detail">
     {c.subtitle && <p class="subtitle">{c.subtitle}</p>}
     <p class="body-copy">{c.body}</p>
