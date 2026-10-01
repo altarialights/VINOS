@@ -323,8 +323,8 @@ dialog .close { margin: 0; flex-shrink: 0; min-width: 46px; min-height: 46px; }
 /* Nexus & Frontaura: shared identity, original spatial and motion design. */
 :root { --forest: #201914; --ink: #120f0c; --amber: #c6ad76; --muted: #d8d0c4; --header-height: 96px; }
 .header { background: linear-gradient(#120f0cf2, #120f0c9c 75%, #120f0c00); }
-.brand { width: 145px; }
-.brand img { height: 80px; object-fit: contain; }
+.brand { width: 270px; min-width: 0; }
+.brand img { height: 52px; object-fit: contain; }
 .menu-panel { background: #211b16; }
 .menu-editorial h2 em { color: var(--amber); }
 #uva .static-art, .subject-layer[data-layer='grapes'] { background: #fff; }
@@ -344,8 +344,20 @@ dialog .close { margin: 0; flex-shrink: 0; min-width: 46px; min-height: 46px; }
 @media (max-width:1099px) {
   :root { --header-height: 84px; }
   .header { background: linear-gradient(#120f0c, #120f0cf2 72%, #120f0c00); }
-  .brand { width: 116px; }
-  .brand img { height: 70px; }
+  .brand { width: clamp(160px, 38vw, 250px); flex-shrink: 1; }
+  .brand img { height: 44px; }
   .chapter#inicio { padding-top: 120px; }
 }
 @media (prefers-reduced-motion:reduce) { .brand-ambient img { animation: none !important; } }
+/* Match the studio packshot silhouette while retaining the full-resolution master. */
+img[src*='nexus-crianza-premium'] {
+  mask: url('/assets/nexus/bottle-silhouette.svg') center / contain no-repeat;
+  -webkit-mask: url('/assets/nexus/bottle-silhouette.svg') center / contain no-repeat;
+}
+[data-layer='bottle'] picture, #inicio .static-art > picture { filter: drop-shadow(12px 20px 20px #0005); }
+@media (max-width: 479px) {
+  .header { gap: 10px; padding-inline: 16px; }
+  .header-actions { flex-shrink: 0; gap: 6px; }
+  .header-actions .button.small { min-height: 44px; padding: 8px 12px; font-size: 13px; }
+  .header-actions .menu-toggle { min-width: 44px; min-height: 44px; }
+}

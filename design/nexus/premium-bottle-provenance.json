@@ -1,0 +1,11 @@
+{
+  "tool": "Built-in image_gen",
+  "prompt": "Edit target: the supplied official Nexus Crianza bottle product photograph. Produce an exceptionally premium, high-definition studio retouch of this EXACT bottle for a luxury wine website. Preserve the same narrow Bordeaux bottle proportions, lavender violet capsule, same lavender label design, all branding and wording including FRONTAURA & VICTORIA and NEXUS RIBERA DEL DUERO CRIANZA, original line art. Do not invent awards, vintage or different packaging. Eliminate blurry pixelated edges and horizontal artifacts outside the silhouette. Rich deep obsidian glass with precise long softbox edge reflections, detailed paper label texture, restrained realistic metallic sheen on capsule, crisp readable main lettering, refined contrast. Front-facing upright bottle, entire silhouette visible with small top and bottom margins, centered in portrait 1024x1536 canvas. Crucial: genuinely TRANSPARENT alpha background, no floor, no scenery, no solid background, no fake checkerboard, no halo, no cast shadow outside bottle. Render a high-end commercial packshot cutout, not an illustration.",
+  "reference": "public/assets/nexus/nexus-crianza-official.png",
+  "master": "design/nexus/nexus-crianza-premium-master.png",
+  "webAssets": [
+    "public/assets/nexus/nexus-crianza-premium-desktop.webp",
+    "public/assets/nexus/nexus-crianza-premium-mobile.webp"
+  ],
+  "presentation": "Generated background is removed in the webpage by the SVG silhouette mask; raster has no alpha. Main branding retained, small label typography is an AI reconstruction."
+}

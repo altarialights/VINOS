@@ -50,18 +50,18 @@
   {
     "name": "nexus-crianza",
     "variant": "desktop",
-    "path": "assets/nexus/nexus-crianza-desktop.webp",
-    "width": 980,
-    "height": 1480,
-    "alpha": true
+    "path": "assets/nexus/nexus-crianza-premium-desktop.webp",
+    "width": 1024,
+    "height": 1536,
+    "alpha": false
   },
   {
     "name": "nexus-crianza",
     "variant": "mobile",
-    "path": "assets/nexus/nexus-crianza-mobile.webp",
+    "path": "assets/nexus/nexus-crianza-premium-mobile.webp",
     "width": 640,
-    "height": 967,
-    "alpha": true
+    "height": 960,
+    "alpha": false
   },
   {
     "name": "frontaura-crianza",

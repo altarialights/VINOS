@@ -2,7 +2,7 @@ export const wines = [
   {
     id: 'nexus-crianza-2020', name: 'Nexus Crianza', vintage: 2020,
     grape: '100% Tempranillo', origin: 'D.O. Ribera del Duero',
-    aging: '12 meses en roble francés', image: 'nexus-crianza',
+    aging: '12 meses en roble francés', image: 'nexus-crianza-premium',
     tasting: 'Fruta madura y notas florales, con recuerdos de nuez y un fondo balsámico. Fresco, suave y equilibrado.',
     pairing: 'Carnes a la brasa, asados y guisos.',
     url: 'https://www.bodegasnexus.com/vino/vino-tinto-nexus-crianza/',
