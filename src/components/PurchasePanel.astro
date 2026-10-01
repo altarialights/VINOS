@@ -12,7 +12,7 @@ const wine = wines[0];
     <select class="wine-select" id="wine-select">{wines.map(w => <option value={w.id}>{w.name} · {w.vintage}</option>)}</select>
     <div id="wine-information" aria-live="polite" aria-atomic="true"><p class="wine-origin" id="wine-origin">{wine.origin}</p><h3 class="product-name" id="wine-name">{wine.name} · {wine.vintage}</h3><ul class="wine-facts"><li id="wine-grape">{wine.grape}</li><li id="wine-aging">{wine.aging}</li></ul><p class="wine-description" id="wine-description">{wine.tasting}</p></div>
     <div class="shop-actions"><button class="button" type="button" data-wine-details>{content.commerce.primary}<Arrow /></button><a class="button secondary" id="wine-shop" href={wine.url} target="_blank" rel="noopener noreferrer">{content.commerce.secondary}<Arrow /></a></div>
-    <p class="fine mt-4">{content.commerce.unavailableMessage}</p>
+    <p class="fine mt-8">{content.commerce.unavailableMessage}</p>
     <div class="cross-sell"><p>El vino se entiende mejor en su origen.</p><a href="#cata">Descubre nuestras bodegas<Arrow /></a></div>
   </div>
 </div></section>
